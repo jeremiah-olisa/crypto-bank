@@ -1,0 +1,23 @@
+Artisan::call('route:list')
+php artisan route:list
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:list');
+Artisan::call('route:lis');
+Artisan::call('route:lis');
+Artisan::call('route:list');
+Artisan::call('migrate');
