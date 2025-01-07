@@ -22,6 +22,18 @@ return new class extends Migration
             // Foreign key constraint referencing users table
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+        
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('user_id')->unsigned()->nullable(false);
+            $table->bigInteger('currency_id')->unsigned()->nullable(false);
+            $table->decimal('balance', 15, 2)->default(0.00);
+            $table->timestamps();
+
+            // Foreign key constraints
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
+        });
 
         Schema::create('transaction_entries', function (Blueprint $table) {
             $table->id();
@@ -38,17 +50,6 @@ return new class extends Migration
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
         });
 
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id')->unsigned()->nullable(false);
-            $table->bigInteger('currency_id')->unsigned()->nullable(false);
-            $table->decimal('balance', 15, 2)->default(0.00);
-            $table->timestamps();
-
-            // Foreign key constraints
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
-        });
     }
 
     /**
@@ -57,7 +58,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('transaction_entries');
-        Schema::dropIfExists('transactions');
         Schema::dropIfExists('accounts');
+        Schema::dropIfExists('transactions');
     }
 };
