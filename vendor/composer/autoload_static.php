@@ -37,9 +37,9 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'aadac1114cab8dc19489a7f6dc24c003' => __DIR__ . '/..' . '/pestphp/pest-plugin-arch/src/Autoload.php',
+        '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'f83ed111c2f97a0449abf067f157f418' => __DIR__ . '/..' . '/pestphp/pest/src/Functions.php',
         '7d2876738dc0328edeb8a103c76cd8e7' => __DIR__ . '/..' . '/pestphp/pest/src/Pest.php',
-        '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '98caa11a197f6516a8e48aa4abb5ccc6' => __DIR__ . '/..' . '/inertiajs/inertia-laravel/helpers.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
@@ -97,6 +97,7 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Clock\\' => 24,
+            'Spatie\\WebTinker\\' => 17,
         ),
         'R' => 
         array (
@@ -359,6 +360,10 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'Symfony\\Component\\Clock\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/clock',
+        ),
+        'Spatie\\WebTinker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-web-tinker/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -6671,6 +6676,13 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\WebTinker\\Console\\InstallCommand' => __DIR__ . '/..' . '/spatie/laravel-web-tinker/src/Console/InstallCommand.php',
+        'Spatie\\WebTinker\\Http\\Controllers\\WebTinkerController' => __DIR__ . '/..' . '/spatie/laravel-web-tinker/src/Http/Controllers/WebTinkerController.php',
+        'Spatie\\WebTinker\\Http\\Middleware\\Authorize' => __DIR__ . '/..' . '/spatie/laravel-web-tinker/src/Http/Middleware/Authorize.php',
+        'Spatie\\WebTinker\\OutputModifiers\\OutputModifier' => __DIR__ . '/..' . '/spatie/laravel-web-tinker/src/OutputModifiers/OutputModifier.php',
+        'Spatie\\WebTinker\\OutputModifiers\\PrefixDateTime' => __DIR__ . '/..' . '/spatie/laravel-web-tinker/src/OutputModifiers/PrefixDateTime.php',
+        'Spatie\\WebTinker\\Tinker' => __DIR__ . '/..' . '/spatie/laravel-web-tinker/src/Tinker.php',
+        'Spatie\\WebTinker\\WebTinkerServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-web-tinker/src/WebTinkerServiceProvider.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Clock\\Clock' => __DIR__ . '/..' . '/symfony/clock/Clock.php',
         'Symfony\\Component\\Clock\\ClockAwareTrait' => __DIR__ . '/..' . '/symfony/clock/ClockAwareTrait.php',
