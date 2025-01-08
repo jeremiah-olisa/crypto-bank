@@ -13,7 +13,6 @@
         --popover: 0 0% 100%;
         --popover-foreground: 222.2 84% 4.9%;
 
-
         --input: 214.3 31.8% 91.4%;
 
         --primary: 222.2 47.4% 11.2%;
@@ -22,14 +21,12 @@
         --secondary: 210 40% 96.1%;
         --secondary-foreground: 222.2 47.4% 11.2%;
 
-
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 210 40% 98%;
 
         --ring: 222.2 84% 4.9%;
 
         --radius: 0.5rem;
-
 
         --foreground: 211 97% 12%;
         --background: 204 33% 97%;
@@ -43,11 +40,14 @@
 
         --muted: 213 16% 53%;
 
-
         --accent: 210 40% 96.1%;
         --accent-foreground: 222.2 47.4% 11.2%;
 
-        --gradient-2: linear-gradient(250deg, #fff 2.51%, rgba(212, 241, 255, 0.54) 96.8%);
+        --gradient-2: linear-gradient(
+            250deg,
+            #fff 2.51%,
+            rgba(212, 241, 255, 0.54) 96.8%
+        );
     }
 
     .dark {
@@ -135,16 +135,19 @@
     }
 
     /* Firefox */
-    input[type="number"] {
+    input[type='number'] {
         -moz-appearance: textfield;
     }
 }
 
 @layer utilities {
-
     /* ===== GRADIENT BACKGROUND ===== */
     .gradient-bg-1 {
-        background: linear-gradient(180deg, rgba(0, 172, 255, 0.46) 0%, rgba(189, 0, 255, 0.35) 100%);
+        background: linear-gradient(
+            180deg,
+            rgba(0, 172, 255, 0.46) 0%,
+            rgba(189, 0, 255, 0.35) 100%
+        );
     }
 
     .gradient-bg-2 {
@@ -172,7 +175,7 @@
 
 /* ===== VUE-3 APEXCHART ===== */
 .apexcharts-tooltip {
-    @apply !shadow-lg !border-0 !rounded-lg;
+    @apply !rounded-lg !border-0 !shadow-lg;
 }
 
 .apexcharts-tooltip-title {
@@ -184,7 +187,7 @@
 }
 
 .apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
-    @apply !bg-slate-700 !border-b-gray-700;
+    @apply !border-b-gray-700 !bg-slate-700;
 }
 
 .apexcharts-tooltip.apexcharts-theme-dark,
@@ -193,7 +196,7 @@
 }
 
 .apexcharts-xaxistooltip {
-    @apply !shadow !border-0 !rounded-lg font-medium;
+    @apply !rounded-lg !border-0 font-medium !shadow;
 }
 
 .apexcharts-xaxistooltip-bottom:before {
@@ -205,15 +208,15 @@
 }
 
 .apexcharts-legend-marker {
-    @apply rtl: !ml-1 rtl: !mr-auto rtl: !left-0;
+    @apply rtl:!left-0 rtl:!ml-1 rtl:!mr-auto;
 }
 
 .apexcharts-tooltip-series-group {
-    @apply rtl: !text-right;
+    @apply rtl:!text-right;
 }
 
 .apexcharts-tooltip-marker {
-    @apply rtl: !ml-2 rtl: !mr-auto;
+    @apply rtl:!ml-2 rtl:!mr-auto;
 }
 
 /* ===== N-PROGRESS ===== */
