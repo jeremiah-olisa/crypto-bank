@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { lightTheme, Notification, Notivue, NotivueTheme } from 'notivue';
 import { onMounted, ref } from 'vue';
-import { auth } from './auth/firebase';
 
 const theme: NotivueTheme = {
     ...lightTheme,
@@ -15,9 +14,7 @@ const theme: NotivueTheme = {
 const isLoading = ref(true);
 
 onMounted(() => {
-    auth.onAuthStateChanged(() => {
-        isLoading.value = false;
-    });
+    isLoading.value = false;
 });
 </script>
 
@@ -33,8 +30,7 @@ onMounted(() => {
     </div>
 
     <template v-else>
-        <!-- ROUTER VIEW -->
-        <RouterView />
+        <slot />
 
         <!-- NOTIVUE NOTIFICATION -->
         <Notivue v-slot="item">
