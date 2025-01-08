@@ -54,6 +54,8 @@
         "yup": "^1.4.0"
     },
     "dependencies": {
-        "@tailwindcss/typography": "^0.5.16"
+        "@tailwindcss/typography": "^0.5.16",
+        "@types/lodash": "^4.17.14",
+        "merge": "link:lodash\\merge"
     }
 }

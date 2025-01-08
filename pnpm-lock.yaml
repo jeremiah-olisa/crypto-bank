@@ -11,6 +11,12 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17)
+      '@types/lodash':
+        specifier: ^4.17.14
+        version: 4.17.14
+      merge:
+        specifier: link:lodash\merge
+        version: link:lodash/merge
     devDependencies:
       '@inertiajs/vue3':
         specifier: ^2.0.0
@@ -774,6 +780,9 @@ packages:
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
+
+  '@types/lodash@4.17.14':
+    resolution: {integrity: sha512-jsxagdikDiDBeIRaPYtArcT8my4tN1og7MtMRquFT3XNA6axxyHDRUemqDz/taRDdOUn0GnGHRCuff4q48sW9A==}
 
   '@types/node@22.10.5':
     resolution: {integrity: sha512-F8Q+SeGimwOo86fiovQh8qiXfFEh2/ocYv7tU5pJ3EXMSSxk1Joj5wefpFK2fHTf/N6HKGSxIDBT9f3gCxXPkQ==}
@@ -2993,6 +3002,8 @@ snapshots:
       vue: 3.5.13(typescript@5.5.4)
 
   '@types/estree@1.0.6': {}
+
+  '@types/lodash@4.17.14': {}
 
   '@types/node@22.10.5':
     dependencies:

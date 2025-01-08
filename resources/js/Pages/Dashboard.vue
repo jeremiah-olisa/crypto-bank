@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
     <Head title="Dashboard" />
 
-    <AuthenticatedLayout>
-        <template #header>
+    <DefaultLayout>
+        <!-- <template #header>
             <h2
                 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200"
             >
                 Dashboard
             </h2>
-        </template>
+        </template> -->
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div
-                    class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
+                    class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg"
                 >
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         You're logged in!
@@ -26,5 +26,5 @@ import { Head } from '@inertiajs/vue3';
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </DefaultLayout>
 </template>
