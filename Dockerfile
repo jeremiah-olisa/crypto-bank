@@ -1,4 +1,4 @@
-# Start from the official PHP 7.4 image
+# Start from the official PHP 8.1 image (or 8.0 if needed)
 FROM php:8.1-cli
 
 # Install system dependencies
@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     locales \
     libzip-dev \
     libonig-dev \
+    libpq-dev \    # PostgreSQL support (if needed)
     zip \
     jpegoptim optipng pngquant gifsicle \
     vim \
@@ -17,29 +18,32 @@ RUN apt-get update && apt-get install -y \
     curl \
     git
 
-# Clear cache
+# Clean up unnecessary apt files
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip pdo_pgsql
 
-# Install composer
+# Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Set working directory
+# Set the working directory
 WORKDIR /var/www
 
-# Remove the default nginx index page
+# Remove the default nginx index page (if applicable)
 RUN rm -rf /var/www/html
 
-# Copy existing application directory permissions
-COPY --chown=www-data:www-data . /var/www
+# Copy the application code and set permissions
+COPY . /var/www
 
-# Change current user to www
+# Change ownership of files to the www-data user and group
+RUN chown -R www-data:www-data /var/www
+
+# Switch to the www-data user
 USER www-data
 
-# Run composer install
-RUN composer install
+# Run composer install (as www-data)
+RUN composer install --no-interaction --prefer-dist
 
 # Expose the port Laravel will serve on
 EXPOSE 8000
