@@ -1,4 +1,4 @@
-# Start from the official PHP 8.2 image (or 8.0 if needed)
+# Start from the official PHP 8.1 image (or 8.0 if needed)
 FROM php:8.2-cli
 
 # Install system dependencies
@@ -10,19 +10,29 @@ RUN apt-get update && apt-get install -y \
     locales \
     libzip-dev \
     libonig-dev \
-    libpq-dev \
+    libpq-dev \          
+    libcurl4-openssl-dev \ 
+    libssl-dev \         
+    libxpm-dev \         
+    libxml2-dev \        
+    libicu-dev \         
+    libmcrypt-dev \      
     zip \
     jpegoptim optipng pngquant gifsicle \
     vim \
     unzip \
     curl \
-    git
-
-# Clean up unnecessary apt files
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    git \
+    xdebug \             
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip pdo_pgsql
+
+# Install Xdebug (optional, but useful for local development)
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
 # Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -42,10 +52,8 @@ RUN chown -R www-data:www-data /var/www
 # Switch to the www-data user
 USER www-data
 
-# Run composer install (as www-data)
-# RUN composer install --no-interaction --prefer-dist
+# Run composer install, ignoring platform requirements
 RUN composer install --no-interaction --prefer-dist --ignore-platform-reqs
-
 
 # Expose the port Laravel will serve on
 EXPOSE 8000
