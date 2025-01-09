@@ -22,8 +22,24 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     curl \
-    git \
-    xdebug
+    git
+
+# Install system dependencies
+# RUN apt-get update && apt-get install -y \
+#     build-essential \
+#     libpng-dev \
+#     libjpeg62-turbo-dev \
+#     libfreetype6-dev \
+#     locales \
+#     libzip-dev \
+#     libonig-dev \
+#     libpq-dev \
+#     zip \
+#     jpegoptim optipng pngquant gifsicle \
+#     vim \
+#     unzip \
+#     curl \
+#     git
 
 # Clean up unnecessary apt files
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
