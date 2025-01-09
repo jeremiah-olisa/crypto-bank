@@ -58,5 +58,8 @@ RUN composer install --no-interaction --prefer-dist --ignore-platform-reqs
 # Expose the port Laravel will serve on
 EXPOSE 8000
 
+RUN php artisan optimize:clear
+RUN php artisan optimize
+RUN php artisan migrate --force
 # Start Laravel's server
 CMD php artisan serve --host=0.0.0.0 --port=8000
