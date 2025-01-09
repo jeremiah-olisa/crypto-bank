@@ -64,7 +64,7 @@ watch(
 
         <CollapsibleContent>
             <Link
-                :href="child.route"
+                :href="route(child.route)"
                 v-for="(child, index) in item.children"
                 :key="index"
                 @click="handleCloseSidebar()"

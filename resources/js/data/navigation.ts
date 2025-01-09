@@ -6,17 +6,17 @@ export const navigation = [
     {
         name: 'Currency Management',
         menu: [
-            { label: 'Currencies', route: 'dashboard', icon: 'Banknote' },
-            { label: 'Exchange Rates', route: 'dashboard', icon: 'DollarSign' },
+            { label: 'Currencies', route: 'home', icon: 'Banknote' },
+            { label: 'Exchange Rates', route: 'home', icon: 'DollarSign' },
         ],
     },
     {
         name: 'Transaction Management',
         menu: [
-            { label: 'Transactions', route: 'dashboard', icon: 'CreditCard' },
+            { label: 'Transactions', route: 'home', icon: 'CreditCard' },
             {
                 label: 'Transaction Disputes',
-                route: 'dashboard',
+                route: 'home',
                 icon: 'AlertCircle',
             },
         ],
@@ -26,52 +26,52 @@ export const navigation = [
         menu: [
             {
                 label: 'Account Settings',
-                route: 'dashboard',
+                route: 'home',
                 icon: 'UserCog',
                 children: [
-                    { label: 'Profile Info', route: 'dashboard' },
-                    { label: 'Security', route: 'dashboard' },
-                    { label: 'Two-Factor Authentication', route: 'dashboard' },
-                    { label: 'Notification', route: 'dashboard' },
-                    { label: 'Account Deactivation', route: 'dashboard' },
+                    { label: 'Profile Info', route: 'home' },
+                    { label: 'Security', route: 'home' },
+                    { label: 'Two-Factor Authentication', route: 'home' },
+                    { label: 'Notification', route: 'home' },
+                    { label: 'Account Deactivation', route: 'home' },
                 ],
             },
         ],
     },
-    {
-        name: 'Authentication',
-        menu: [
-            {
-                label: 'Authentication',
-                route: 'dashboard',
-                icon: 'Fingerprint',
-                children: [
-                    { label: 'Login', route: 'dashboard' },
-                    { label: 'Register', route: 'dashboard' },
-                    { label: 'Forget Password', route: 'dashboard' },
-                    { label: 'Verify Email', route: 'dashboard' },
-                    { label: 'Not Found', route: 'dashboard' },
-                    { label: 'Server Error', route: 'dashboard' },
-                    { label: 'Maintenance', route: 'dashboard' },
-                ],
-            },
-        ],
-    },
-    {
-        name: 'Support',
-        menu: [
-            {
-                label: 'Support',
-                route: 'dashboard',
-                icon: 'Headset',
-                children: [
-                    { label: 'Overview', route: 'dashboard' },
-                    { label: 'Tickets', route: 'dashboard' },
-                    { label: 'Create Ticket', route: 'dashboard' },
-                    { label: 'FAQs', route: 'dashboard' },
-                    { label: 'Contact', route: 'dashboard' },
-                ],
-            },
-        ],
-    },
+    // {
+    //     name: 'Authentication',
+    //     menu: [
+    //         {
+    //             label: 'Authentication',
+    //             route: 'home',
+    //             icon: 'Fingerprint',
+    //             children: [
+    //                 { label: 'Login', route: 'home' },
+    //                 { label: 'Register', route: 'home' },
+    //                 { label: 'Forget Password', route: 'home' },
+    //                 { label: 'Verify Email', route: 'home' },
+    //                 { label: 'Not Found', route: 'home' },
+    //                 { label: 'Server Error', route: 'home' },
+    //                 { label: 'Maintenance', route: 'home' },
+    //             ],
+    //         },
+    //     ],
+    // },
+    // {
+    //     name: 'Support',
+    //     menu: [
+    //         {
+    //             label: 'Support',
+    //             route: 'home',
+    //             icon: 'Headset',
+    //             children: [
+    //                 { label: 'Overview', route: 'home' },
+    //                 { label: 'Tickets', route: 'home' },
+    //                 { label: 'Create Ticket', route: 'home' },
+    //                 { label: 'FAQs', route: 'home' },
+    //                 { label: 'Contact', route: 'home' },
+    //             ],
+    //         },
+    //     ],
+    // },
 ];

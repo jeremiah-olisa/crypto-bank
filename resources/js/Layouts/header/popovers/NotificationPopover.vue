@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/popover';
 // DATA LIST
 import { notifications } from '@/data/notifications';
+import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -68,12 +69,12 @@ import { notifications } from '@/data/notifications';
                     </div>
                 </div>
 
-                <RouterLink
-                    to="/"
+                <Link
+                    href="/"
                     class="block px-3 pb-1 pt-3 text-center text-sm font-medium text-primary transition-all hover:underline"
                 >
                     View All Notification
-                </RouterLink>
+                </Link>
             </div>
         </PopoverContent>
     </Popover>

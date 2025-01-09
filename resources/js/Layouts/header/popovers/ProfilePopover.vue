@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
+import { router } from '@inertiajs/vue3';
 // SHADCDN COMPONENTS
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -12,16 +12,10 @@ import Icon from '@/components/Icon.vue';
 // AUTH COMPOSABLE
 import { useAuth } from '@/auth/useAuth';
 
-const route = useRoute();
-const router = useRouter();
-const { user, logout } = useAuth();
+const { user } = useAuth();
 
 const handleLogout = async () => {
-    await logout();
-    router.replace({
-        name: 'Login',
-        query: { redirect: route.fullPath },
-    });
+    router.visit(route('logout'));
 };
 </script>
 
