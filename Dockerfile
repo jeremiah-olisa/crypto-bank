@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     locales \
     libzip-dev \
     libonig-dev \
-    libpq-dev \    # PostgreSQL support (if needed)
+    libpq-dev \
     zip \
     jpegoptim optipng pngquant gifsicle \
     vim \
