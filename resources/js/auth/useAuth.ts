@@ -14,6 +14,7 @@ export const useAuth = () => {
     const user = ref<{
         email: string;
         displayName: string;
+        photoURL: ""
     } | null>(null);
 
     // Mock for user session persistence
@@ -42,7 +43,7 @@ export const useAuth = () => {
         );
 
         if (foundUser) {
-            user.value = { email: foundUser.email, displayName: foundUser.displayName };
+            user.value = { email: foundUser.email, displayName: foundUser.displayName, photoURL: '' };
             return { user: user.value };
         } else {
             throw new Error("Invalid email or password");
@@ -68,7 +69,7 @@ export const useAuth = () => {
         const newUser = { email, password, displayName: name, photoURL: "" };
         mockUsers.push(newUser);
 
-        user.value = { email: newUser.email, displayName: newUser.displayName };
+        user.value = { email: newUser.email, displayName: newUser.displayName, photoURL: "" };
         return { user: user.value };
     };
 

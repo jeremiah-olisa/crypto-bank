@@ -1,45 +1,38 @@
 <script setup lang="ts">
-import Scrollbar from "simplebar-vue";
+import Scrollbar from 'simplebar-vue';
 // CUSTOM COMPONENT
-import NavItem from "./NavItem.vue";
+import NavItem from './NavItem.vue';
 // MENU LIST
-import { navigation } from "@/data/navigation";
-// CUSTOM COMPOSABLE
-import { useLogo } from "@/hooks/useLogo";
-
-const logo = useLogo();
+import { navigation } from '@/data/navigation';
+import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-  <div class="px-4 py-5 mb-2">
-    <RouterLink to="/">
-      <img
-        :src="logo"
-        class="w-7 cursor-pointer"
-        alt="UKO Admin & Client Dashboard"
-      />
-    </RouterLink>
-  </div>
+    <div class="mb-2 px-4 py-5 text-lg font-bold text-foreground">
+        <Link :href="route('dashboard')"> Crypto Bank </Link>
+    </div>
 
-  <Scrollbar class="h-[calc(100vh-75px)]">
-    <nav class="pb-4 space-y-6">
-      <div
-        class="space-y-3"
-        v-for="navGroup in navigation"
-        :key="navGroup.name"
-      >
-        <h4 class="px-5 text-[12px] font-semibold text-primary uppercase">
-          {{ navGroup.name }}
-        </h4>
+    <Scrollbar class="h-[calc(100vh-75px)]">
+        <nav class="space-y-6 pb-4">
+            <div
+                class="space-y-3"
+                v-for="navGroup in navigation"
+                :key="navGroup.name"
+            >
+                <h4
+                    class="px-5 text-[12px] font-semibold uppercase text-primary"
+                >
+                    {{ navGroup.name }}
+                </h4>
 
-        <ul>
-          <NavItem
-            v-for="(menuItem, index) in navGroup.menu"
-            :item="menuItem"
-            :key="index"
-          />
-        </ul>
-      </div>
-    </nav>
-  </Scrollbar>
+                <ul>
+                    <NavItem
+                        v-for="(menuItem, index) in navGroup.menu"
+                        :item="menuItem"
+                        :key="index"
+                    />
+                </ul>
+            </div>
+        </nav>
+    </Scrollbar>
 </template>

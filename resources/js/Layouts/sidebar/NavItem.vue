@@ -1,35 +1,40 @@
 <script setup lang="ts">
-import { useRoute, RouterLink } from "vue-router";
+import { Link } from '@inertiajs/vue3';
 // CUSTOM COMPONENT
-import Icon from "@/components/Icon.vue";
-import NavAccordion from "./NavAccordion.vue";
+import Icon from '@/components/Icon.vue';
+import NavAccordion from './NavAccordion.vue';
 // CUSTOM STORE
-import { useSidebar } from "@/stores/sidebar";
+import { useSidebar } from '@/stores/sidebar';
 // TYPE
-import { NavItem } from "./type";
+import { NavItem } from './type';
 
-const route = useRoute();
 const { handleCloseSidebar } = useSidebar();
 
 defineProps<{ item: NavItem }>();
 </script>
 
 <template>
-  <li
-    v-if="!item.children"
-    @click="handleCloseSidebar()"
-    class="transition-all duration-300 ease-in-out border-l-2 cursor-pointer text-muted group border-l-transparent hover:font-medium hover:border-l-primary hover:text-primary hover:bg-hover"
-    :class="{ 'bg-hover !border-l-primary text-primary': route.path === item.route }">
-    <RouterLink
-      :to="item.route"
-      class="flex p-4 text-[13px] font-medium truncate items-center gap-3">
-      <Icon :size="22" :name="item.icon" :strokeWidth="1.2" />
+    <li
+        v-if="!item.children"
+        @click="handleCloseSidebar()"
+        class="group cursor-pointer border-l-2 border-l-transparent text-muted transition-all duration-300 ease-in-out hover:border-l-primary hover:bg-hover hover:font-medium hover:text-primary"
+        :class="{
+            '!border-l-primary bg-hover text-primary': route().current(
+                item.route,
+            ),
+        }"
+    >
+        <Link
+            :href="route(item.route)"
+            class="flex items-center gap-3 truncate p-4 text-[13px] font-medium"
+        >
+            <Icon :size="22" :name="item.icon" :strokeWidth="1.2" />
 
-      {{ item.label }}
-    </RouterLink>
-  </li>
+            {{ item.label }}
+        </Link>
+    </li>
 
-  <li v-else>
-    <NavAccordion :item="item" />
-  </li>
+    <li v-else>
+        <NavAccordion :item="item" />
+    </li>
 </template>

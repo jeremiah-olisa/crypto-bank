@@ -84,8 +84,8 @@ module.exports = {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))"
                 },
-                hover: "hsl(var(--hover))",
-                active: "hsl(var(--active))"
+                hover: "var(--hover)",
+                active: "var(--active)"
             },
             borderRadius: {
                 xl: "calc(var(--radius) + 4px)",
@@ -111,11 +111,12 @@ module.exports = {
                     to: { height: 0 }
                 }
             },
+
             animation: {
-                "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
-                "collapsible-down": "collapsible-down 0.2s ease-in-out",
-                "collapsible-up": "collapsible-up 0.2s ease-in-out"
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "collapsible-up": "collapsible-up 0.2s ease-in-out",
+                "collapsible-down": "collapsible-down 0.2s ease-in-out"
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans]

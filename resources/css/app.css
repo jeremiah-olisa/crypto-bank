@@ -15,10 +15,10 @@
 
         --input: 214.3 31.8% 91.4%;
 
-        --primary: 222.2 47.4% 11.2%;
+        --primary: 205 86% 54%;
         --primary-foreground: 210 40% 98%;
 
-        --secondary: 210 40% 96.1%;
+        --secondary: 202 40% 96%;
         --secondary-foreground: 222.2 47.4% 11.2%;
 
         --destructive: 0 84.2% 60.2%;
@@ -35,33 +35,31 @@
         --card-foreground: 211 97% 12%;
 
         --hover: 205 86% 95%;
-        --active: 206 44% 93%;
-        --border: 220 13% 91%;
+        --active: hsl(206 44% 93%);
+        --border: hsl(220 13% 91%);
 
         --muted: 213 16% 53%;
 
         --accent: 210 40% 96.1%;
         --accent-foreground: 222.2 47.4% 11.2%;
 
-        --gradient-2: linear-gradient(
-            250deg,
-            #fff 2.51%,
-            rgba(212, 241, 255, 0.54) 96.8%
-        );
+        --gradient-2: linear-gradient(250deg,
+                #fff 2.51%,
+                rgba(212, 241, 255, 0.54) 96.8%);
     }
 
     .dark {
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
+        /* --muted: 217.2 32.6% 17.5%; */
+        /* --muted-foreground: 215 20.2% 65.1%; */
 
         --popover: 222.2 84% 4.9%;
         --popover-foreground: 210 40% 98%;
         --input: 217.2 32.6% 17.5%;
 
-        --primary: 210 40% 98%;
+        /* --primary: 210 40% 98%; */
         --primary-foreground: 222.2 47.4% 11.2%;
 
-        --secondary: 217.2 32.6% 17.5%;
+        /* --secondary: 217.2 32.6% 17.5%; */
         --secondary-foreground: 210 40% 98%;
 
         --destructive: 0 62.8% 30.6%;
@@ -76,8 +74,8 @@
         --card-foreground: 0 0% 100%;
 
         --border: 217 19% 27%;
-        --hover: 220 14% 96% 0.039;
-        --active: 220 14% 96% 0.039;
+        --hover: hsla(220, 14%, 96%, 0.039);
+        --active: hsla(220, 14%, 96%, 0.039);
 
         --accent: 217.2 32.6% 17.5%;
         --accent-foreground: 210 40% 98%;
@@ -141,13 +139,12 @@
 }
 
 @layer utilities {
+
     /* ===== GRADIENT BACKGROUND ===== */
     .gradient-bg-1 {
-        background: linear-gradient(
-            180deg,
-            rgba(0, 172, 255, 0.46) 0%,
-            rgba(189, 0, 255, 0.35) 100%
-        );
+        background: linear-gradient(180deg,
+                rgba(0, 172, 255, 0.46) 0%,
+                rgba(189, 0, 255, 0.35) 100%);
     }
 
     .gradient-bg-2 {
