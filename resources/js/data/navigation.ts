@@ -38,6 +38,17 @@ export const navigation = [
             },
         ],
     },
+    {
+        name: 'User Management',
+        menu: [
+            { label: 'Users', route: 'dashboard', icon: 'Users' },
+            {
+                label: 'Roles & Permissions',
+                route: 'dashboard',
+                icon: 'ShieldCheck',
+            },
+        ],
+    },
     // {
     //     name: 'Authentication',
     //     menu: [
