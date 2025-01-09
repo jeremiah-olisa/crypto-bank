@@ -1,7 +1,9 @@
 {
     "singleQuote": true,
+    "semi": true,
     "plugins": [
         "prettier-plugin-organize-imports",
-        "prettier-plugin-tailwindcss"
+        "prettier-plugin-tailwindcss",
+        "prettier-plugin-eslint"
     ]
 }

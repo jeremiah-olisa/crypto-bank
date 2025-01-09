@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue";
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
+import type { HTMLAttributes } from 'vue';
 
-const props = defineProps<{ class?: HTMLAttributes["class"] }>();
+const props = defineProps<{ class?: HTMLAttributes['class'] }>();
 </script>
 
 <template>
-  <table :class="cn('w-full caption-bottom font-medium text-sm', props.class)">
-    <slot />
-  </table>
+    <table
+        :class="cn('w-full caption-bottom text-sm font-medium', props.class)"
+    >
+        <slot />
+    </table>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { Link } from '@inertiajs/vue3';
 import { onMounted, ref, watch } from 'vue';
-import { RouterLink, useRoute, useRouter } from 'vue-router';
 // SHADCDN COMPONENTS
 import {
     Collapsible,
@@ -12,28 +12,27 @@ import Icon from '@/components/Icon.vue';
 // CUSTOM STORE
 import { useSidebar } from '@/stores/sidebar';
 // TYPE
+import { RouteName } from '../../../../vendor/tightenco/ziggy/src/js';
 import { NavItem } from './type';
 
 const props = defineProps<{ item: NavItem }>();
 
-const route = useRoute();
-const router = useRouter();
 const isOpen = ref(false);
 const { handleCloseSidebar } = useSidebar();
 
-const isActive = (path: string) => {
+const isActive = (path?: RouteName) => {
     const find = props.item.children?.find((item) => item.route === path);
     if (find) isOpen.value = true;
     else isOpen.value = false;
 };
 
 onMounted(async () => {
-    await router.isReady();
-    isActive(route.path);
+    // await router.isReady();
+    isActive(route().current());
 });
 
 watch(
-    () => route.path,
+    () => route().current(),
     (newValue) => isActive(newValue),
 );
 </script>
@@ -64,19 +63,21 @@ watch(
         </CollapsibleTrigger>
 
         <CollapsibleContent>
-            <RouterLink
-                :to="child.route"
-                v-for="child in item.children"
+            <Link
+                :href="child.route"
+                v-for="(child, index) in item.children"
+                :key="index"
                 @click="handleCloseSidebar()"
                 class="group flex items-center gap-4 p-4 text-[13px] font-medium text-muted duration-300 ease-in-out hover:bg-hover hover:font-medium hover:text-primary"
                 :class="{
-                    '!border-l-primary bg-hover text-primary':
-                        route.path === child.route,
+                    '!border-l-primary bg-hover text-primary': route().current(
+                        child.route,
+                    ),
                 }"
             >
                 <Icon name="Dot" :size="20" />
                 {{ child.label }}
-            </RouterLink>
+            </Link>
         </CollapsibleContent>
     </Collapsible>
 </template>

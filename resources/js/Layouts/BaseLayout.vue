@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import BaseLayout from '@/Layouts/BaseLayout.vue';
 import { lightTheme, Notification, Notivue, NotivueTheme } from 'notivue';
 import { onMounted, ref } from 'vue';
-import BaseLayout from '@/Layouts/BaseLayout.vue';
 
 const theme: NotivueTheme = {
     ...lightTheme,

@@ -1,37 +1,39 @@
 <script setup lang="ts">
-import { VisuallyHidden } from "radix-vue";
+import { VisuallyHidden } from 'radix-vue';
 // SHADCN COMPONENTS
 import {
-  Sheet,
-  SheetTitle,
-  SheetHeader,
-  SheetContent,
-  SheetDescription,
-} from "@/components/ui/sheet";
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+} from '@/components/ui/sheet';
 // CUSTOM COMPONENTS
-import SidebarNavigation from "./sidebar/SidebarNavigation.vue";
+import SidebarNavigation from './sidebar/SidebarNavigation.vue';
 // CUSTOM COMPOSABLE
-import { useSidebar } from "@/stores/sidebar";
+import { useSidebar } from '@/stores/sidebar';
 
 const sidebarStore = useSidebar();
 </script>
 
 <template>
-  <Sheet
-    :open="sidebarStore.isSidebarOpen"
-    @update:open="sidebarStore.handleSidebarToggle()"
-  >
-    <SheetContent side="left" class="p-0 outline-none border-r-0 w-[280px]">
-      <VisuallyHidden>
-        <SheetHeader>
-          <SheetTitle>UKO</SheetTitle>
-          <SheetDescription
-            >UKO Admin & Client Dashboard Template</SheetDescription
-          >
-        </SheetHeader>
-      </VisuallyHidden>
+    <Sheet
+        :open="sidebarStore.isSidebarOpen"
+        @update:open="sidebarStore.handleSidebarToggle()"
+    >
+        <SheetContent
+            side="left"
+            class="absolute top-0 w-[280px] border-r-0 p-0 outline-none"
+        >
+            <VisuallyHidden>
+                <SheetHeader>
+                    <SheetTitle>Crypto Bank</SheetTitle>
+                    <!-- <SheetDescription
+                        >UKO Admin & Client Dashboard Template</SheetDescription
+                    > -->
+                </SheetHeader>
+            </VisuallyHidden>
 
-      <SidebarNavigation />
-    </SheetContent>
-  </Sheet>
+            <SidebarNavigation />
+        </SheetContent>
+    </Sheet>
 </template>

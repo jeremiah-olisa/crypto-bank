@@ -4,7 +4,7 @@ import Scrollbar from 'simplebar-vue';
 import NavItem from './NavItem.vue';
 // MENU LIST
 import { navigation } from '@/data/navigation';
-import { Link } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3' /* PartiallyEnd: #3632/scriptSetup.vue */; /* PartiallyEnd: #3632/scriptSetup.vue */
 </script>
 
 <template>

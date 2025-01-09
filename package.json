@@ -4,6 +4,8 @@
     "scripts": {
         "build": "vue-tsc && vite build",
         "dev": "vite",
+        "format": "prettier --write --semi '**/*.{js,ts,vue,blade.php}' --ignore-path .gitignore --no-semi",
+        "postformat": "yarn lint",
         "lint": "eslint resources/js --ext .js,.ts,.vue --ignore-path .gitignore --fix"
     },
     "devDependencies": {
@@ -35,6 +37,7 @@
         "pinia": "^2.2.2",
         "postcss": "^8.4.31",
         "prettier": "^3.3.0",
+        "prettier-plugin-eslint": "^1.0.2",
         "prettier-plugin-organize-imports": "^4.0.0",
         "prettier-plugin-tailwindcss": "^0.6.5",
         "radix-vue": "^1.9.4",

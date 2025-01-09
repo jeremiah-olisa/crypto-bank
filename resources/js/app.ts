@@ -6,16 +6,14 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createApp, DefineComponent, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
-import { createPinia } from "pinia";
-import { createNotivue } from "notivue";
-import VueApexCharts from "vue3-apexcharts";
+import { createNotivue } from 'notivue';
+import { createPinia } from 'pinia';
+import VueApexCharts from 'vue3-apexcharts';
 
-import "simplebar-vue/dist/simplebar.min.css";
-import "notivue/notification.css";
-import "notivue/animations.css";
-import "nprogress/nprogress.css";
-
-
+import 'notivue/animations.css';
+import 'notivue/notification.css';
+import 'nprogress/nprogress.css';
+import 'simplebar-vue/dist/simplebar.min.css';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

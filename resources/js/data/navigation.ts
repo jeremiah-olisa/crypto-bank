@@ -1,53 +1,77 @@
 export const navigation = [
     {
-        name: "Overview",
-        menu: [
-            { label: "Dashboard", route: "dashboard", icon: "Blocks" },
-        ]
+        name: 'Overview',
+        menu: [{ label: 'Dashboard', route: 'dashboard', icon: 'Blocks' }],
     },
-    // {
-    //     name: "Others",
-    //     menu: [
-    //         {
-    //             label: "Account Settings",
-    //             route: "/settings",
-    //             icon: "UserCog",
-    //             children: [
-    //                 { label: "Profile Info", route: "/settings" },
-    //                 { label: "Security", route: "/settings/security" },
-    //                 { label: "Plan & Billing", route: "/settings/plan-billing" },
-    //                 { label: "Two Factor Authentication", route: "/settings/two-factor-authentication" },
-    //                 { label: "Notification", route: "/settings/notification" },
-    //                 { label: "Social Media Links", route: "/settings/social-media-links" },
-    //                 { label: "Account Deactivation", route: "/settings/account-deactivation" }
-    //             ]
-    //         },
-    //         {
-    //             icon: "Fingerprint",
-    //             label: "Authentication",
-    //             route: "/sessions",
-    //             children: [
-    //                 { label: "Login", route: "/login" },
-    //                 { label: "Register", route: "/register" },
-    //                 { label: "Forget Password", route: "/forget-password" },
-    //                 { label: "Verify Email", route: "/verification" },
-    //                 { label: "Not Found", route: "/**/123" },
-    //                 { label: "Server Error", route: "/server-error" },
-    //                 { label: "Maintenance", route: "/maintenance" }
-    //             ]
-    //         },
-    //         {
-    //             icon: "Headset",
-    //             label: "Support",
-    //             route: "/support",
-    //             children: [
-    //                 { label: "Overview", route: "/support" },
-    //                 { label: "Tickets", route: "/support/tickets" },
-    //                 { label: "Create Ticket", route: "/support/create-ticket" },
-    //                 { label: "FAQs", route: "/support/faqs" },
-    //                 { label: "Contact", route: "/support/contact" }
-    //             ]
-    //         }
-    //     ]
-    // }
+    {
+        name: 'Currency Management',
+        menu: [
+            { label: 'Currencies', route: 'dashboard', icon: 'Banknote' },
+            { label: 'Exchange Rates', route: 'dashboard', icon: 'DollarSign' },
+        ],
+    },
+    {
+        name: 'Transaction Management',
+        menu: [
+            { label: 'Transactions', route: 'dashboard', icon: 'CreditCard' },
+            {
+                label: 'Transaction Disputes',
+                route: 'dashboard',
+                icon: 'AlertCircle',
+            },
+        ],
+    },
+    {
+        name: 'Settings',
+        menu: [
+            {
+                label: 'Account Settings',
+                route: 'dashboard',
+                icon: 'UserCog',
+                children: [
+                    { label: 'Profile Info', route: 'dashboard' },
+                    { label: 'Security', route: 'dashboard' },
+                    { label: 'Two-Factor Authentication', route: 'dashboard' },
+                    { label: 'Notification', route: 'dashboard' },
+                    { label: 'Account Deactivation', route: 'dashboard' },
+                ],
+            },
+        ],
+    },
+    {
+        name: 'Authentication',
+        menu: [
+            {
+                label: 'Authentication',
+                route: 'dashboard',
+                icon: 'Fingerprint',
+                children: [
+                    { label: 'Login', route: 'dashboard' },
+                    { label: 'Register', route: 'dashboard' },
+                    { label: 'Forget Password', route: 'dashboard' },
+                    { label: 'Verify Email', route: 'dashboard' },
+                    { label: 'Not Found', route: 'dashboard' },
+                    { label: 'Server Error', route: 'dashboard' },
+                    { label: 'Maintenance', route: 'dashboard' },
+                ],
+            },
+        ],
+    },
+    {
+        name: 'Support',
+        menu: [
+            {
+                label: 'Support',
+                route: 'dashboard',
+                icon: 'Headset',
+                children: [
+                    { label: 'Overview', route: 'dashboard' },
+                    { label: 'Tickets', route: 'dashboard' },
+                    { label: 'Create Ticket', route: 'dashboard' },
+                    { label: 'FAQs', route: 'dashboard' },
+                    { label: 'Contact', route: 'dashboard' },
+                ],
+            },
+        ],
+    },
 ];
