@@ -24,23 +24,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     git
 
-# Install system dependencies
-# RUN apt-get update && apt-get install -y \
-#     build-essential \
-#     libpng-dev \
-#     libjpeg62-turbo-dev \
-#     libfreetype6-dev \
-#     locales \
-#     libzip-dev \
-#     libonig-dev \
-#     libpq-dev \
-#     zip \
-#     jpegoptim optipng pngquant gifsicle \
-#     vim \
-#     unzip \
-#     curl \
-#     git
-
 # Clean up unnecessary apt files
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install PHP extensions
@@ -70,12 +53,19 @@ USER www-data
 
 # Run composer install, ignoring platform requirements
 RUN composer install --no-interaction --prefer-dist --ignore-platform-reqs
+# Fix environment for database connection
+RUN php artisan config:clear
+
+# Clear cache and optimize the app
+# Continue even if cache clear fails (if DB is not ready)
+RUN php artisan optimize:clear || true  
+# Continue even if optimization fails (if DB is not ready)
+RUN php artisan optimize || true        
+# Run migrations and ignore errors if DB is not available
+RUN php artisan migrate --force || true  
 
 # Expose the port Laravel will serve on
 EXPOSE 8000
 
-RUN php artisan optimize:clear
-RUN php artisan optimize
-RUN php artisan migrate --force
 # Start Laravel's server
 CMD php artisan serve --host=0.0.0.0 --port=8000
