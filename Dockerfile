@@ -1,5 +1,5 @@
-# Start from the official PHP 8.1 image (or 8.0 if needed)
-FROM php:8.1-cli
+# Start from the official PHP 8.2 image (or 8.0 if needed)
+FROM php:8.2-cli
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -43,7 +43,9 @@ RUN chown -R www-data:www-data /var/www
 USER www-data
 
 # Run composer install (as www-data)
-RUN composer install --no-interaction --prefer-dist
+# RUN composer install --no-interaction --prefer-dist
+RUN composer install --no-interaction --prefer-dist --ignore-platform-reqs
+
 
 # Expose the port Laravel will serve on
 EXPOSE 8000
