@@ -23,10 +23,10 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl \
     git \
-    xdebug \             
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    xdebug
 
+# Clean up unnecessary apt files
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip pdo_pgsql
 
