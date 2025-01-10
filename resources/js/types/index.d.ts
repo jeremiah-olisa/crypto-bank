@@ -3,6 +3,14 @@ export interface User {
     name: string;
     email: string;
     email_verified_at?: string;
+    profile_image?: string;
+}
+
+export interface AppDetails {
+    name: string;
+    env: string;
+    debug: string;
+    isProduction: boolean;
 }
 
 export type PageProps<
@@ -11,4 +19,5 @@ export type PageProps<
     auth: {
         user: User;
     };
+    app: AppDetails;
 };

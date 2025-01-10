@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-    useDark,
-    useTextDirection,
-    useToggle,
-    useWindowScroll,
-} from '@vueuse/core';
+import { useDark, useToggle, useWindowScroll } from '@vueuse/core';
 // CUSTOM STORE
 import { useSidebar } from '@/stores/sidebar';
 // CUSTOM COMPONENTS
@@ -14,15 +9,15 @@ import ProfilePopover from './popovers/ProfilePopover.vue';
 import SearchPopover from './popovers/SearchPopover.vue';
 
 const isDark = useDark();
-const dir = useTextDirection();
+// const dir = useTextDirection();
 const toggleDark = useToggle(isDark);
 const { y } = useWindowScroll({ behavior: 'smooth' });
 
 const sidebarStore = useSidebar();
 
-const changeDirection = () => {
-    dir.value = dir.value === 'rtl' ? 'ltr' : 'rtl';
-};
+// const changeDirection = () => {
+//     dir.value = dir.value === 'rtl' ? 'ltr' : 'rtl';
+// };
 </script>
 
 <template>

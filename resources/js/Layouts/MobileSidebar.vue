@@ -26,7 +26,7 @@ const sidebarStore = useSidebar();
         >
             <VisuallyHidden>
                 <SheetHeader>
-                    <SheetTitle>Crypto Bank</SheetTitle>
+                    <SheetTitle>{{ $page.props.app.name }}</SheetTitle>
                     <!-- <SheetDescription
                         >UKO Admin & Client Dashboard Template</SheetDescription
                     > -->

@@ -9,7 +9,7 @@ import { Link } from '@inertiajs/vue3' /* PartiallyEnd: #3632/scriptSetup.vue */
 
 <template>
     <div class="mb-2 px-4 py-5 text-lg font-bold text-foreground">
-        <Link :href="route('dashboard')"> Crypto Bank </Link>
+        <Link :href="route('dashboard')"> {{ $page.props.app.name }} </Link>
     </div>
 
     <Scrollbar class="h-[calc(100vh-75px)]">

@@ -13,8 +13,6 @@ const theme: NotivueTheme = {
 
 const isLoading = ref(true);
 
-const isProduction = false;
-
 onMounted(() => {
     isLoading.value = false;
 });
@@ -33,7 +31,7 @@ onMounted(() => {
 
     <template v-else>
         <div
-            v-if="!isProduction"
+            v-if="!$page.props.app.isProduction"
             class="text-md w-full bg-destructive text-center font-medium text-destructive-foreground"
         >
             This is a <strong>DEVELOPMENT</strong> Environment

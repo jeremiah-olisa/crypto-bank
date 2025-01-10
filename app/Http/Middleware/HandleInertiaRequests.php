@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Env;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -33,6 +34,12 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+            ],
+            'app' => [
+                'name' => Env::get('APP_NAME'),
+                'env' => Env::get('APP_ENV'),
+                'debug' => Env::get('APP_DEBUG'),
+                'isProduction' => Env::get('APP_ENV') == 'production',
             ],
             'flash' => [
                 'message' => fn() => $request->session()->get('message'),

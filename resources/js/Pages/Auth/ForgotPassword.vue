@@ -30,7 +30,7 @@ const submit = () => {
         onSuccess: () => {
             form.reset('email');
         },
-        onSuccess: () => {
+        onFinish: () => {
             push.success('Password reset instuctions sent successfully');
         },
         onError: throwAxiosError,

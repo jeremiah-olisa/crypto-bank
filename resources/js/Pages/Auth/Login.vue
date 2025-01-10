@@ -40,10 +40,10 @@ const submit = () => {
         onSuccess: () => {
             form.reset('password');
             push.success('Login successful');
-            router.visit(route('dashboard'));
+            // router.visit(route('dashboard'));
         },
-        onError: throwAxiosError,
-        onErrors: pushErrorMessages,
+        // onError: throwAxiosError,
+        // onErrors: pushErrorMessages,
     });
 };
 </script>

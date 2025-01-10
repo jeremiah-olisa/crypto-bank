@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { router } from '@inertiajs/vue3';
 // SHADCDN COMPONENTS
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -9,14 +8,6 @@ import {
 } from '@/components/ui/popover';
 // CUSTOM COMPONENT
 import Icon from '@/components/Icon.vue';
-// AUTH COMPOSABLE
-import { useAuth } from '@/auth/useAuth';
-
-const { user } = useAuth();
-
-const handleLogout = async () => {
-    router.visit(route('logout'));
-};
 </script>
 
 <template>
@@ -26,17 +17,16 @@ const handleLogout = async () => {
                 class="flex cursor-pointer items-center gap-2 rounded-full bg-hover py-2 pl-3 pr-2"
             >
                 <p class="text-nowrap text-[13px] font-semibold">
-                    Hi. {{ user?.displayName || 'John Smith' }}
+                    Hi. {{ $page.props.auth?.user?.name || 'Anonymous User' }}
                 </p>
-
                 <Avatar size="xs" class="border border-white">
                     <AvatarImage
-                        v-if="user?.photoURL"
-                        :src="user.photoURL"
+                        v-if="$page.props.auth?.user?.profile_image"
+                        :src="$page.props.auth?.user?.profile_image"
                         alt="User"
                     />
                     <AvatarFallback>{{
-                        user?.displayName?.charAt(0)
+                        $page.props.auth?.user?.name?.charAt(0)
                     }}</AvatarFallback>
                 </Avatar>
             </div>
@@ -70,12 +60,12 @@ const handleLogout = async () => {
                     />
                 </li>
 
-                <li
+                <Link
                     class="flex items-center gap-2 px-5 py-2 transition-all hover:bg-hover"
-                    @click="handleLogout()"
+                    :href="route('logout')"
                 >
                     <Icon name="LogOut" :size="18" class="text-muted" /> Log Out
-                </li>
+                </Link>
             </ul>
         </PopoverContent>
     </Popover>

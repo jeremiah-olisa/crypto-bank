@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useLogo } from '@/hooks/useLogo';
+import { Link } from '@inertiajs/vue3';
 import BaseLayout from './BaseLayout.vue';
 
 defineProps<{
@@ -16,14 +17,20 @@ const logo = useLogo();
         <div class="grid min-h-screen bg-primary lg:grid-cols-2">
             <div class="hidden items-center p-20 text-white lg:flex xl:px-40">
                 <div>
-                    <div class="mb-10 flex items-center gap-2">
+                    <Link
+                        prefetch
+                        :href="route('home')"
+                        class="mb-10 flex items-center gap-2"
+                    >
                         <img
                             :src="logo"
                             class="object-fit-cover h-10 object-center"
-                            alt="Crypto Bank"
+                            :alt="$page.props.app.name"
                         />
-                        <h1 class="text-4xl font-bold">Crypto Bank</h1>
-                    </div>
+                        <h1 class="text-4xl font-bold">
+                            {{ $page.props.app.name }}
+                        </h1>
+                    </Link>
                     <h4 v-if="title" class="mb-7 text-4xl font-semibold">
                         {{ title }}
                     </h4>
