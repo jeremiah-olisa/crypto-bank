@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/popover';
 // CUSTOM COMPONENT
 import Icon from '@/components/Icon.vue';
+import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -34,11 +35,12 @@ import Icon from '@/components/Icon.vue';
 
         <PopoverContent class="w-[200px] rounded-lg px-0 py-2">
             <ul class="cursor-pointer text-sm">
-                <li
+                <Link
+                    :href="route('profile.edit')"
                     class="flex items-center gap-2 px-5 py-2 transition-all hover:bg-hover"
                 >
                     <Icon name="User" :size="18" class="text-muted" /> Profile
-                </li>
+                </Link>
 
                 <li
                     class="flex items-center gap-2 px-5 py-2 transition-all hover:bg-hover"
@@ -61,10 +63,12 @@ import Icon from '@/components/Icon.vue';
                 </li>
 
                 <Link
-                    class="flex items-center gap-2 px-5 py-2 transition-all hover:bg-hover"
+                    class="flex w-full items-center gap-2 px-5 py-2 text-error transition-all hover:bg-hover"
                     :href="route('logout')"
+                    method="post"
                 >
-                    <Icon name="LogOut" :size="18" class="text-muted" /> Log Out
+                    <Icon name="LogOut" :size="18" />
+                    Log Out
                 </Link>
             </ul>
         </PopoverContent>
