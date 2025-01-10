@@ -6,9 +6,9 @@ const theme: NotivueTheme = {
     ...lightTheme,
     '--nv-icon-size': '1rem',
     '--nv-spacing': '.75rem',
-    '--nv-global-bg': 'var(--card)',
-    '--nv-global-border': 'var(--border)',
-    '--nv-global-fg': 'var(--card-foreground)',
+    '--nv-global-bg': 'hsl(var(--card))',
+    '--nv-global-border': 'hsl(var(--border))',
+    '--nv-global-fg': 'hsl(var(--card-foreground))',
 };
 
 const isLoading = ref(true);

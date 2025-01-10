@@ -24,7 +24,7 @@ const validationSchema = yup.object({
         }),
     terms: yup
         .boolean()
-        .oneOf([true], 'You must accept the terms')
+        .not([true], 'You must accept the terms')
         .required('Terms acceptance is required'),
 });
 const form = useForm(
@@ -39,6 +39,10 @@ const form = useForm(
 );
 
 const submit = () => {
+    form.validate();
+
+    if (form.hasErrors) return;
+
     form.post(route('register'), {
         onFinish: () => {
             form.reset('password', 'password_confirmation', 'terms');
@@ -159,6 +163,7 @@ const submit = () => {
 
             <Button
                 :disabled="form.processing"
+                :loading="form.processing"
                 type="submit"
                 class="!mt-8 w-full"
                 >Sign Up</Button

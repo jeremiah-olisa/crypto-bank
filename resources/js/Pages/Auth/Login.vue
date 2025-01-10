@@ -3,6 +3,7 @@ import Checkbox from '@/components/Checkbox.vue';
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
+import { pushErrorMessages } from '@/lib/utils';
 import { Link } from '@inertiajs/vue3';
 import { useForm } from 'formjs-vue2';
 import { push } from 'notivue';
@@ -30,7 +31,11 @@ const form = useForm(
     { schema: validationSchema },
 );
 
-const submit = async () => {
+const submit = () => {
+    form.validate();
+
+    if (form.hasErrors) return;
+
     form.post(route('login'), {
         onFinish: () => {
             form.reset('password');
@@ -41,6 +46,9 @@ const submit = async () => {
                 (e.response?.data as any)?.message ?? 'An Error Occurred',
             );
             // push.error('Invalid credentials');
+        },
+        onErrors: (e) => {
+            pushErrorMessages(e);
         },
     });
 };
@@ -126,6 +134,7 @@ const submit = async () => {
 
             <Button
                 :disabled="form.processing"
+                :loading="form.processing"
                 type="submit"
                 class="!mt-8 w-full"
                 >Sign In</Button
