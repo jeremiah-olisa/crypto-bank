@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique()->nullable(false);
-            $table->string('code')->unique()->nullable(false);
+            $table->string('code', 5)->unique()->nullable(false);
             $table->string('image_url')->nullable();
             $table->string('image_cloud_id')->unique()->nullable(false);
             $table->timestamps();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\CurrencyService;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CurrencyController extends Controller
 {
@@ -28,8 +29,8 @@ class CurrencyController extends Controller
     /**
      * Example method for showing a single resource.
      */
-    public function show($id)
+    public function create()
     {
-        // Use the service for logic
+        return Inertia::render("Currency/Create");
     }
 }
