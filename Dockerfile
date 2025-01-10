@@ -55,16 +55,16 @@ USER www-data
 RUN composer install --no-interaction --prefer-dist --ignore-platform-reqs
 RUN composer dump-autoload
 # Fix environment for database connection
-# RUN php artisan config:clear
+RUN php artisan config:clear
 
-# # Clear cache and optimize the app
-# # Continue even if cache clear fails (if DB is not ready)
-# RUN php artisan optimize:clear
-# # Continue even if optimization fails (if DB is not ready)
-# RUN php artisan optimize      
-# # Run migrations and ignore errors if DB is not available
-# RUN php artisan migrate --force
-# RUN php artisan config:cache
+# Clear cache and optimize the app
+# Continue even if cache clear fails (if DB is not ready)
+RUN php artisan optimize:clear
+# Continue even if optimization fails (if DB is not ready)
+RUN php artisan optimize      
+# Run migrations and ignore errors if DB is not available
+RUN php artisan migrate --force
+RUN php artisan config:cache
 
 # Expose the port Laravel will serve on
 EXPOSE 8000
