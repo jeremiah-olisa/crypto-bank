@@ -27,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
         Route::prefix('currency')->group(function () {
+            Route::get('/list', [CurrencyController::class, 'create'])->name('currency.list');
             Route::get('/create', [CurrencyController::class, 'create'])->name('currency.create');
         });
     });

@@ -23,7 +23,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        // Use the service for logic
+        return Inertia::render("Currency/List");
     }
 
     /**

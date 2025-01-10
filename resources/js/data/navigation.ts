@@ -6,18 +6,63 @@ export const navigation = [
     {
         name: 'Currency Management',
         menu: [
-            { label: 'Currencies', route: 'home', icon: 'Banknote' },
+            {
+                label: 'Currencies',
+                route: 'currency.list',
+                icon: 'Banknote',
+                children: [{ label: 'Currency List', route: 'currency.list' }],
+            },
             { label: 'Exchange Rates', route: 'home', icon: 'DollarSign' },
         ],
     },
     {
         name: 'Transaction Management',
         menu: [
-            { label: 'Transactions', route: 'home', icon: 'CreditCard' },
+            {
+                label: 'Transactions',
+                route: 'home',
+                icon: 'CreditCard',
+                children: [
+                    {
+                        label: 'All',
+                        route: 'home',
+                    },
+                    {
+                        label: 'Pending',
+                        route: 'home',
+                    },
+                    {
+                        label: 'Processing',
+                        route: 'home',
+                    },
+                    {
+                        label: 'Done',
+                        route: 'home',
+                    },
+                ],
+            },
             {
                 label: 'Transaction Disputes',
                 route: 'home',
                 icon: 'AlertCircle',
+                children: [
+                    {
+                        label: 'List',
+                        route: 'home',
+                    },
+                    {
+                        label: 'Pending',
+                        route: 'home',
+                    },
+                    {
+                        label: 'Processing',
+                        route: 'home',
+                    },
+                    {
+                        label: 'Done',
+                        route: 'home',
+                    },
+                ],
             },
         ],
     },
@@ -29,7 +74,7 @@ export const navigation = [
                 route: 'home',
                 icon: 'UserCog',
                 children: [
-                    { label: 'Profile Info', route: 'home' },
+                    { label: 'Profile Info', route: 'profile.edit' },
                     { label: 'Security', route: 'home' },
                     { label: 'Two-Factor Authentication', route: 'home' },
                     { label: 'Notification', route: 'home' },
@@ -41,11 +86,23 @@ export const navigation = [
     {
         name: 'User Management',
         menu: [
-            { label: 'Users', route: 'dashboard', icon: 'Users' },
+            {
+                label: 'Users',
+                route: 'dashboard',
+                icon: 'Users',
+                children: [
+                    { label: 'User List', route: 'home' },
+                    { label: 'Invite User', route: 'home' },
+                ],
+            },
             {
                 label: 'Roles & Permissions',
                 route: 'dashboard',
                 icon: 'ShieldCheck',
+                children: [
+                    { label: 'Roles', route: 'home' },
+                    { label: 'Permissions', route: 'home' },
+                ],
             },
         ],
     },

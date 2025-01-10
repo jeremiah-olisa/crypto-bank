@@ -1,84 +1,82 @@
 <template>
     <DefaultLayout>
-        <Head title="List Currency" />
-        <div :class="{ dark: isDark }">
-            <div class="container mx-auto px-4 py-8">
-                <h1 class="mb-6 text-3xl font-bold">Create Currency</h1>
+        <Head title="List New Currency" />
+        <div class="container mx-auto px-4 py-8">
+            <h1 class="mb-6 text-3xl font-bold">Create Currency</h1>
 
-                <!-- Create Currency Form -->
-                <div class="mb-8 rounded-lg bg-card p-6 shadow-md">
-                    <form @submit.prevent="onSubmit" class="space-y-4">
-                        <TextField
-                            v-model="form.name"
-                            label="Currency Name"
-                            name="name"
-                            placeholder="Bitcoin"
-                            id="name"
-                            type="text"
-                            :error-message="form.errors.name"
-                            required
-                        />
-                        <TextField
-                            v-model="form.code"
-                            label="Currency Code"
-                            name="code"
-                            id="code"
-                            placeholder="BTC"
-                            type="text"
-                            :error-message="form.errors.code"
-                            required
-                        />
-                        <div>
-                            <label class="mb-1 block text-sm font-medium"
-                                >Image Source</label
-                            >
-                            <div class="mb-2 flex items-center space-x-4">
-                                <label class="flex items-center">
-                                    <input
-                                        type="radio"
-                                        v-model="imageSourceType"
-                                        value="file"
-                                        class="mr-2"
-                                    />
-                                    File Upload
-                                </label>
-                                <label class="flex items-center">
-                                    <input
-                                        type="radio"
-                                        v-model="imageSourceType"
-                                        value="url"
-                                        class="mr-2"
-                                    />
-                                    Image URL
-                                </label>
-                            </div>
-                            <input
-                                v-if="imageSourceType === 'file'"
-                                type="file"
-                                @change="handleFileUpload"
-                                accept="image/*"
-                                class="w-full rounded-md border border-border bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-                            />
-                            <TextField
-                                v-else
-                                v-model="form.image_url"
-                                label="Image URL"
-                                name="image_url"
-                                id="image_url"
-                                type="url"
-                                placeholder="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=040"
-                                :error-message="form.errors.image_url"
-                                required
-                            />
-                        </div>
-                        <button
-                            type="submit"
-                            class="rounded-md bg-primary px-4 py-2 text-white transition-colors hover:bg-primary-dark"
+            <!-- Create Currency Form -->
+            <div class="mb-8 rounded-lg bg-card p-6 shadow-md">
+                <form @submit.prevent="onSubmit" class="space-y-4">
+                    <TextField
+                        v-model="form.name"
+                        label="Currency Name"
+                        name="name"
+                        placeholder="Bitcoin"
+                        id="name"
+                        type="text"
+                        :error-message="form.errors.name"
+                        required
+                    />
+                    <TextField
+                        v-model="form.code"
+                        label="Currency Code"
+                        name="code"
+                        id="code"
+                        placeholder="BTC"
+                        type="text"
+                        :error-message="form.errors.code"
+                        required
+                    />
+                    <div>
+                        <label class="mb-1 block text-sm font-medium"
+                            >Image Source</label
                         >
-                            Create Currency
-                        </button>
-                    </form>
-                </div>
+                        <div class="mb-2 flex items-center space-x-4">
+                            <label class="flex items-center">
+                                <input
+                                    type="radio"
+                                    v-model="imageSourceType"
+                                    value="file"
+                                    class="mr-2"
+                                />
+                                File Upload
+                            </label>
+                            <label class="flex items-center">
+                                <input
+                                    type="radio"
+                                    v-model="imageSourceType"
+                                    value="url"
+                                    class="mr-2"
+                                />
+                                Image URL
+                            </label>
+                        </div>
+                        <input
+                            v-if="imageSourceType === 'file'"
+                            type="file"
+                            @change="handleFileUpload"
+                            accept="image/*"
+                            class="w-full rounded-md border border-border bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        />
+                        <TextField
+                            v-else
+                            v-model="form.image_url"
+                            label="Image URL"
+                            name="image_url"
+                            id="image_url"
+                            type="url"
+                            placeholder="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=040"
+                            :error-message="form.errors.image_url"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="rounded-md bg-primary px-4 py-2 text-white transition-colors hover:bg-primary-dark"
+                    >
+                        Create Currency
+                    </button>
+                </form>
             </div>
         </div>
     </DefaultLayout>

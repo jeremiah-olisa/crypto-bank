@@ -54,7 +54,7 @@ const submit = () => {
         form-title="Sign In"
         title="Welcome Back to the Future of Crypto Trading!"
         subtitle="Your Digital Assets Are Just a Click Away"
-        description="Sign in to access your crypto portfolio and start trading with ease. Our platform offers secure, fast, and transparent exchanges, providing you with everything you need to manage your digital assets efficiently. Join a community of like-minded traders and enjoy the power of seamless transactions. Let’s continue shaping the future of crypto, one trade at a time."
+        description="Sign in to access your crypto portfolio and start trading with ease. Our platform offers secure, fast, and transparent exchanges, providing you with everything you need to manage your digital assets efficiently. "
     >
         <Head title="Log in" />
         <template #form-action>

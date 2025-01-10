@@ -11,10 +11,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-        
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap any application services.
@@ -22,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(UrlGenerator $url)
     {
         Vite::prefetch(concurrency: 3);
-        if (env('APP_ENV') == 'production') {
+        if (env('APP_ENV') == 'production' || request()->isSecure()) {
             $url->forceScheme('https');
         }
     }
