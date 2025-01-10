@@ -41,29 +41,29 @@ export const navigation = [
                     },
                 ],
             },
-            {
-                label: 'Transaction Disputes',
-                route: 'home',
-                icon: 'AlertCircle',
-                children: [
-                    {
-                        label: 'List',
-                        route: 'home',
-                    },
-                    {
-                        label: 'Pending',
-                        route: 'home',
-                    },
-                    {
-                        label: 'Processing',
-                        route: 'home',
-                    },
-                    {
-                        label: 'Done',
-                        route: 'home',
-                    },
-                ],
-            },
+            // {
+            //     label: 'Transaction Disputes',
+            //     route: 'home',
+            //     icon: 'AlertCircle',
+            //     children: [
+            //         {
+            //             label: 'List',
+            //             route: 'home',
+            //         },
+            //         {
+            //             label: 'Pending',
+            //             route: 'home',
+            //         },
+            //         {
+            //             label: 'Processing',
+            //             route: 'home',
+            //         },
+            //         {
+            //             label: 'Done',
+            //             route: 'home',
+            //         },
+            //     ],
+            // },
         ],
     },
     {
