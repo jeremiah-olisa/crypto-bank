@@ -10,7 +10,10 @@ export const navigation = [
                 label: 'Currencies',
                 route: 'currency.list',
                 icon: 'Banknote',
-                children: [{ label: 'Currency List', route: 'currency.list' }],
+                children: [
+                    { label: 'Currencies List', route: 'currency.list' },
+                    { label: 'List New Currency', route: 'currency.create' }
+                ],
             },
             { label: 'Exchange Rates', route: 'home', icon: 'DollarSign' },
         ],
