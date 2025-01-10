@@ -2,6 +2,7 @@
 import Checkbox from '@/components/Checkbox.vue';
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
+import { axiosDefaultHeaders } from '@/constants/axios';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
 import { Link, router } from '@inertiajs/vue3';
@@ -40,10 +41,10 @@ const submit = () => {
         onSuccess: () => {
             form.reset('password');
             push.success('Login successful');
-            // router.visit(route('dashboard'));
+            router.visit(route('dashboard'));
         },
-        // onError: throwAxiosError,
-        // onErrors: pushErrorMessages,
+        onError: throwAxiosError,
+        onErrors: pushErrorMessages,
     });
 };
 </script>
@@ -67,7 +68,7 @@ const submit = () => {
             </Link>
         </template>
 
-        <form @submit="submit">
+        <form @submit.prevent="submit">
             <div class="space-y-5">
                 <TextField
                     id="email"

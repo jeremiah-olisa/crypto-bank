@@ -75,7 +75,7 @@ const submit = () => {
             </Link>
         </template>
 
-        <form @submit="submit">
+        <form @submit.prevent="submit">
             <div class="space-y-5">
                 <!-- Email field -->
                 <TextField
