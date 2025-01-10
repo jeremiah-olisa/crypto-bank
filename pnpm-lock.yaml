@@ -28,7 +28,7 @@ importers:
         specifier: ^0.5.3
         version: 0.5.10(tailwindcss@3.4.17)
       '@types/node':
-        specifier: ^22.5.0
+        specifier: ^22.10.5
         version: 22.10.5
       '@types/nprogress':
         specifier: ^0.2.3
@@ -75,6 +75,9 @@ importers:
       firebase:
         specifier: ^10.13.1
         version: 10.14.1
+      formjs-vue2:
+        specifier: ^1.4.0
+        version: 1.4.0(vue@3.5.13(typescript@5.5.4))
       laravel-vite-plugin:
         specifier: ^1.0
         version: 1.1.1(vite@6.0.7(@types/node@22.10.5)(jiti@1.21.7)(yaml@2.7.0))
@@ -1469,6 +1472,14 @@ packages:
   form-data@4.0.1:
     resolution: {integrity: sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==}
     engines: {node: '>= 6'}
+
+  formjs-core@1.4.0:
+    resolution: {integrity: sha512-AxiZBNH+nRyO8++zzPaRNz86JGkGpAVy/ZkP7VJ15jbjVATBhFRRPY1CngMBopom7x3UfVmk9Ce/lmQX/DG0RQ==}
+
+  formjs-vue2@1.4.0:
+    resolution: {integrity: sha512-wS47K63L7hm33Sympz3RPyNGzb+KygIBgQwVjkLZVS3ldTXYZNQMWMGr5vTtWw964AehadS2hB+t6Gr8NDC++A==}
+    peerDependencies:
+      vue: ^2.7.0
 
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
@@ -4174,6 +4185,23 @@ snapshots:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
+
+  formjs-core@1.4.0:
+    dependencies:
+      axios: 1.7.9
+    transitivePeerDependencies:
+      - debug
+
+  formjs-vue2@1.4.0(vue@3.5.13(typescript@5.5.4)):
+    dependencies:
+      axios: 1.7.9
+      formjs-core: 1.4.0
+      lodash.clonedeep: 4.5.0
+      lodash.isequal: 4.5.0
+      vue: 3.5.13(typescript@5.5.4)
+      yup: 1.6.1
+    transitivePeerDependencies:
+      - debug
 
   fraction.js@4.3.7: {}
 

@@ -17,8 +17,12 @@ export function useLogo() {
     });
 
     onMounted(() => {
-        if (isDark.value) logo.value = '/logos/UKO-light-version.png';
-        else logo.value = '/logos/UKO-dark-version.png';
+        if (isDark.value)
+            logo.value =
+                'https://img.freepik.com/premium-psd/3d-bitcoin-bank-icon-illustration_148391-2132.jpg?w=740';
+        else
+            logo.value =
+                'https://img.freepik.com/premium-psd/3d-money-coin-bank-saving-icon_148391-583.jpg?w=740';
     });
 
     return logo;

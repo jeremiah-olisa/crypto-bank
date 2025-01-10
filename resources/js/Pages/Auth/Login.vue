@@ -1,98 +1,135 @@
 <script setup lang="ts">
 import Checkbox from '@/components/Checkbox.vue';
-import InputError from '@/components/InputError.vue';
-import InputLabel from '@/components/InputLabel.vue';
-import PrimaryButton from '@/components/PrimaryButton.vue';
-import TextInput from '@/components/TextInput.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import TextField from '@/components/form/TextField.vue';
+import Button from '@/components/ui/button/Button.vue';
+import AuthLayout from '@/Layouts/AuthLayout.vue';
+import { Link } from '@inertiajs/vue3';
+import { useForm } from 'formjs-vue2';
+import { push } from 'notivue';
+import * as yup from 'yup';
 
 defineProps<{
     canResetPassword?: boolean;
     status?: string;
 }>();
 
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
+const validationSchema = yup.object({
+    email: yup.string().email('Invalid email').required('Email is required'),
+    password: yup
+        .string()
+        .min(6, 'Password must be at least 6 characters')
+        .required('Password is required'),
+    remember: yup.boolean().required(),
 });
+const form = useForm(
+    {
+        email: '',
+        password: '',
+        remember: false,
+    },
+    { schema: validationSchema },
+);
 
-const submit = () => {
+const submit = async () => {
     form.post(route('login'), {
         onFinish: () => {
             form.reset('password');
+            push.success('User logged in successfully');
+        },
+        onError: (e) => {
+            push.error(
+                (e.response?.data as any)?.message ?? 'An Error Occurred',
+            );
+            // push.error('Invalid credentials');
         },
     });
 };
 </script>
 
 <template>
-    <GuestLayout>
+    <AuthLayout
+        form-title="Sign In"
+        title="Welcome Back to the Future of Crypto Trading!"
+        subtitle="Your Digital Assets Are Just a Click Away"
+        description="Sign in to access your crypto portfolio and start trading with ease. Our platform offers secure, fast, and transparent exchanges, providing you with everything you need to manage your digital assets efficiently. Join a community of like-minded traders and enjoy the power of seamless transactions. Let’s continue shaping the future of crypto, one trade at a time."
+    >
         <Head title="Log in" />
+        <template #form-action>
+            <p class="text-muted">New user?</p>
+            <Link
+                :href="route('register')"
+                class="text-primary underline underline-offset-2"
+            >
+                Create an Account
+            </Link>
+        </template>
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
-            {{ status }}
-        </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
+        <form @submit="submit">
+            <div class="space-y-5">
+                <TextField
                     id="email"
-                    type="email"
-                    class="mt-1 block w-full"
+                    name="email"
+                    label="Email"
+                    placeholder="Enter email"
                     v-model="form.email"
+                    :error-message="form.errors.email"
                     required
                     autofocus
                     autocomplete="username"
+                    @input="form.validate('email')"
                 />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
+                <TextField
                     id="password"
                     type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
+                    name="password"
+                    label="Password"
+                    placeholder="Enter password"
                     required
+                    autofocus
                     autocomplete="current-password"
+                    v-model="form.password"
+                    :error-message="form.errors.password"
+                    @input="form.validate('password')"
                 />
-
-                <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4 block">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400"
-                        >Remember me</span
-                    >
-                </label>
-            </div>
+            <div class="mt-3 flex justify-between">
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                        <Checkbox
+                            id="remember"
+                            class="h-4 w-4 rounded border"
+                            :checked="form.remember"
+                            :onUpdate:checked="
+                                (value) => {
+                                    form.validate('remember');
+                                    form.remember = value;
+                                }
+                            "
+                        />
+                        <label
+                            for="remember"
+                            class="text-sm font-medium leading-none"
+                            >Remember me</label
+                        >
+                    </div>
+                    <InputError :message="form.errors.remember" />
+                </div>
 
-            <div class="mt-4 flex items-center justify-end">
                 <Link
-                    v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
+                    class="text-sm text-primary underline-offset-2 transition-all hover:underline"
                 >
-                    Forgot your password?
+                    Forget Password?
                 </Link>
-
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Log in
-                </PrimaryButton>
             </div>
+
+            <Button
+                :disabled="form.processing"
+                type="submit"
+                class="!mt-8 w-full"
+                >Sign In</Button
+            >
         </form>
-    </GuestLayout>
+    </AuthLayout>
 </template>

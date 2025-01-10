@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import BaseLayout from '@/Layouts/BaseLayout.vue';
 import { lightTheme, Notification, Notivue, NotivueTheme } from 'notivue';
 import { onMounted, ref } from 'vue';
 
@@ -14,30 +13,36 @@ const theme: NotivueTheme = {
 
 const isLoading = ref(true);
 
+const isProduction = false;
+
 onMounted(() => {
     isLoading.value = false;
 });
 </script>
 
 <template>
-    <BaseLayout>
-        <!-- ADD INITIAL PAGE LOADING -->
+    <!-- ADD INITIAL PAGE LOADING -->
+    <div
+        v-if="isLoading"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-background transition-opacity duration-500"
+    >
         <div
-            v-if="isLoading"
-            class="fixed inset-0 z-50 flex items-center justify-center bg-background transition-opacity duration-500"
+            class="h-16 w-16 animate-spin rounded-full border-[6px] border-border border-t-primary"
+        />
+    </div>
+
+    <template v-else>
+        <div
+            v-if="!isProduction"
+            class="text-md w-full bg-destructive text-center font-medium text-destructive-foreground"
         >
-            <div
-                class="h-16 w-16 animate-spin rounded-full border-[6px] border-border border-t-primary"
-            />
+            This is a <strong>DEVELOPMENT</strong> Environment
         </div>
+        <slot />
 
-        <template v-else>
-            <slot />
-
-            <!-- NOTIVUE NOTIFICATION -->
-            <Notivue v-slot="item">
-                <Notification :item="item" :theme="theme" />
-            </Notivue>
-        </template>
-    </BaseLayout>
+        <!-- NOTIVUE NOTIFICATION -->
+        <Notivue v-slot="item">
+            <Notification :item="item" :theme="theme" />
+        </Notivue>
+    </template>
 </template>

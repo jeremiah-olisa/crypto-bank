@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useField } from 'vee-validate';
 import { InputHTMLAttributes } from 'vue';
 // SHADCN COMPONENTS
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useVModel } from '@vueuse/core';
 
 // ==============================================================
 interface TextFieldProps {
@@ -12,7 +12,10 @@ interface TextFieldProps {
     label?: string;
     placeholder: string;
     isDisable?: boolean;
+    errorMessage?: string;
     type?: InputHTMLAttributes['type'];
+    modelValue?: string | number;
+    defaultValue?: string | number;
 }
 // ==============================================================
 
@@ -21,7 +24,14 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
     isDisable: false,
 });
 
-const { value, errorMessage } = useField<string>(() => props.name);
+const emits = defineEmits<{
+    (e: 'update:modelValue', payload: string | number): void;
+}>();
+
+const modelValue = useVModel(props, 'modelValue', emits, {
+    passive: true,
+    defaultValue: props.defaultValue,
+});
 </script>
 
 <template>
@@ -37,8 +47,8 @@ const { value, errorMessage } = useField<string>(() => props.name);
             :id="id"
             step="0.01"
             :type="type"
+            v-model="modelValue"
             :disabled="isDisable"
-            v-model:model-value="value"
             :error="!!errorMessage"
             :placeholder="placeholder"
         />
