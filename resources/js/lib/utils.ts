@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { type ClassValue, clsx } from 'clsx';
 import { push } from 'notivue';
 import { twMerge } from 'tailwind-merge';
@@ -16,4 +17,11 @@ export const pushErrorMessages = (error: Record<string, string>) => {
             push.error(errorMessage);
         }
     }
-}
+};
+
+export const throwAxiosError = (error: AxiosError<any, any>) => {
+    push.error(
+        error.response?.data?.message ?? error.message ?? 'An Error Occurred',
+    );
+    // push.error('Invalid credentials');
+};

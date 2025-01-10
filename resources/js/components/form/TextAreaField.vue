@@ -10,12 +10,12 @@ interface TextAreaFieldProps {
     name: string;
     label?: string;
     placeholder: string;
-    isDisable?: boolean;
+    disabled?: boolean;
 }
 // ==============================================================
 
 const props = withDefaults(defineProps<TextAreaFieldProps>(), {
-    isDisable: false,
+    disabled: false,
 });
 
 const { value, errorMessage } = useField<string>(() => props.name);
@@ -33,7 +33,7 @@ const { value, errorMessage } = useField<string>(() => props.name);
         <Textarea
             rows="6"
             :id="id"
-            :disabled="isDisable"
+            :disabled="disabled"
             :placeholder="placeholder"
             v-model:model-value="value"
             :class="{

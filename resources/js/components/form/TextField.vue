@@ -11,7 +11,7 @@ interface TextFieldProps {
     name: string;
     label?: string;
     placeholder: string;
-    isDisable?: boolean;
+    disabled?: boolean;
     errorMessage?: string;
     type?: InputHTMLAttributes['type'];
     modelValue?: string | number;
@@ -21,7 +21,7 @@ interface TextFieldProps {
 
 const props = withDefaults(defineProps<TextFieldProps>(), {
     type: 'text',
-    isDisable: false,
+    disabled: false,
 });
 
 const emits = defineEmits<{
@@ -48,7 +48,7 @@ const modelValue = useVModel(props, 'modelValue', emits, {
             step="0.01"
             :type="type"
             v-model="modelValue"
-            :disabled="isDisable"
+            :disabled="disabled"
             :error="!!errorMessage"
             :placeholder="placeholder"
         />

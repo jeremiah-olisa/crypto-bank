@@ -4,7 +4,8 @@ import Checkbox from '@/components/Checkbox.vue';
 import InputError from '@/components/InputError.vue';
 import TextField from '@/components/form/TextField.vue';
 import { Button } from '@/components/ui/button';
-import { Head, Link } from '@inertiajs/vue3';
+import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { useForm } from 'formjs-vue2';
 import { push } from 'notivue';
 import * as yup from 'yup';
@@ -44,17 +45,13 @@ const submit = () => {
     if (form.hasErrors) return;
 
     form.post(route('register'), {
-        onFinish: () => {
-            form.reset('password', 'password_confirmation', 'terms');
+        onSuccess: () => {
+            form.reset();
             push.success('User registered successfully');
+            router.visit(route('dashboard'));
         },
-        onError: (e) => {
-            push.error(
-                (e.response?.data as any)?.message ?? 'An Error Occurred',
-            );
-
-            // push.error('Invalid credentials');
-        },
+        onError: throwAxiosError,
+        onErrors: pushErrorMessages,
     });
 };
 </script>
@@ -71,6 +68,7 @@ const submit = () => {
         <template #form-action>
             <p class="text-muted">Already have an account?</p>
             <Link
+                prefetch
                 :href="route('login')"
                 class="text-primary underline underline-offset-2"
             >

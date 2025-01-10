@@ -2,13 +2,13 @@
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
-import { pushErrorMessages } from '@/lib/utils';
+import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
 import { Head, Link } from '@inertiajs/vue3';
 import { useForm } from 'formjs-vue2';
 import { push } from 'notivue';
 import * as yup from 'yup';
 
-const props = defineProps<{
+defineProps<{
     status?: string;
 }>();
 
@@ -27,15 +27,14 @@ const submit = () => {
 
     if (form.hasErrors) return;
     form.post(route('password.email'), {
-        onFinish: () => {
+        onSuccess: () => {
             form.reset('email');
         },
         onSuccess: () => {
             push.success('Password reset instuctions sent successfully');
         },
-        onErrors: (e) => {
-            pushErrorMessages(e);
-        },
+        onError: throwAxiosError,
+        onErrors: pushErrorMessages,
     });
 };
 </script>
@@ -53,6 +52,7 @@ const submit = () => {
                 <div class="flex gap-1">
                     <p class="text-muted">Remembered Password?</p>
                     <Link
+                        prefetch
                         :href="route('login')"
                         class="text-primary underline underline-offset-2"
                     >

@@ -3,8 +3,8 @@ import Checkbox from '@/components/Checkbox.vue';
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
-import { pushErrorMessages } from '@/lib/utils';
-import { Link } from '@inertiajs/vue3';
+import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
+import { Link, router } from '@inertiajs/vue3';
 import { useForm } from 'formjs-vue2';
 import { push } from 'notivue';
 import * as yup from 'yup';
@@ -37,19 +37,13 @@ const submit = () => {
     if (form.hasErrors) return;
 
     form.post(route('login'), {
-        onFinish: () => {
+        onSuccess: () => {
             form.reset('password');
-            push.success('User logged in successfully');
+            push.success('Login successful');
+            router.visit(route('dashboard'));
         },
-        onError: (e) => {
-            push.error(
-                (e.response?.data as any)?.message ?? 'An Error Occurred',
-            );
-            // push.error('Invalid credentials');
-        },
-        onErrors: (e) => {
-            pushErrorMessages(e);
-        },
+        onError: throwAxiosError,
+        onErrors: pushErrorMessages,
     });
 };
 </script>
@@ -65,6 +59,7 @@ const submit = () => {
         <template #form-action>
             <p class="text-muted">New user?</p>
             <Link
+                prefetch
                 :href="route('register')"
                 class="text-primary underline underline-offset-2"
             >
@@ -125,6 +120,7 @@ const submit = () => {
                 </div>
 
                 <Link
+                    prefetch
                     :href="route('password.request')"
                     class="text-sm text-primary underline-offset-2 transition-all hover:underline"
                 >
