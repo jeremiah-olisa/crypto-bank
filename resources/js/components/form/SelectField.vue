@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useField } from 'vee-validate';
 // SHADCN COMPONENTS
 import { Label } from '@/components/ui/label';
 import {
@@ -8,6 +7,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { useVModel } from '@vueuse/core';
+import FormHelpDescription from './FormHelpDescription.vue';
 
 // ==============================================================
 interface SelectFieldProps {
@@ -18,18 +19,36 @@ interface SelectFieldProps {
 }
 // ==============================================================
 
-const props = defineProps<SelectFieldProps>();
+const props = defineProps<
+    SelectFieldProps & {
+        defaultValue?: string;
+        modelValue?: string;
+        errorMessage?: string;
+        helpDescription?: string;
+    }
+>();
 
-const { value, errorMessage } = useField<string>(() => props.name);
+const emits = defineEmits<{
+    (e: 'update:modelValue', payload: string | number): void;
+}>();
+const modelValue = useVModel(props, 'modelValue', emits, {
+    passive: true,
+    defaultValue: props.defaultValue,
+});
 </script>
 
 <template>
     <div>
-        <Label :for="id" class="mb-3 inline-block text-sm font-medium">{{
-            label
-        }}</Label>
+        <Label :for="id" class="mb-3 flex gap-3 text-sm font-medium"
+            >{{ label }}
+            <FormHelpDescription
+                v-if="helpDescription"
+                align="end"
+                :description="helpDescription"
+            />
+        </Label>
 
-        <Select :id="id" v-model:model-value="value">
+        <Select :id="id" v-model="modelValue">
             <SelectTrigger :class="{ 'border-red-500': errorMessage }">
                 <SelectValue
                     :placeholder="placeholder"

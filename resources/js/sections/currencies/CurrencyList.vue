@@ -35,7 +35,7 @@ const currencies = [
         category: 'Fiat',
         createdAt: '2025-01-01',
         status: 'Published',
-        stock: 15,
+        rate: 15,
         price: 100,
     },
     {
@@ -45,7 +45,7 @@ const currencies = [
         category: 'Cryptocurrency',
         createdAt: '2025-01-02',
         status: 'Draft',
-        stock: 3,
+        rate: 3,
         price: 50000,
     },
     // Add more currencies as needed
@@ -55,9 +55,8 @@ const currencies = [
 const tableHead = [
     'Currency',
     'Listed On',
-    'Code',
-    'Price',
-    'Stock',
+    'Market Price',
+    'Rate',
     'Status',
     'Action',
 ];
@@ -106,6 +105,7 @@ const tableHead = [
                                 <div>
                                     <p class="font-medium">
                                         {{ currency.name }}
+                                        <small>({{ currency.code }})</small>
                                     </p>
                                     <span class="text-xs text-muted">{{
                                         currency.category
@@ -116,24 +116,21 @@ const tableHead = [
                             <!-- Created At -->
                             <TableCell>{{ currency.createdAt }}</TableCell>
 
-                            <!-- Currency Code -->
-                            <TableCell>{{ currency.code }}</TableCell>
-
                             <!-- Price -->
                             <TableCell>{{ currency.price }}</TableCell>
 
-                            <!-- Stock -->
+                            <!-- rate -->
                             <TableCell>
                                 <p
                                     :class="{
-                                        'text-error': currency.stock < 5,
-                                        'text-success': currency.stock > 20,
+                                        'text-error': currency.rate < 5,
+                                        'text-success': currency.rate > 20,
                                         'text-warning':
-                                            currency.stock <= 20 &&
-                                            currency.stock >= 5,
+                                            currency.rate <= 20 &&
+                                            currency.rate >= 5,
                                     }"
                                 >
-                                    {{ currency.stock }}
+                                    {{ currency.rate }}
                                 </p>
                             </TableCell>
 
@@ -190,7 +187,7 @@ const tableHead = [
                                             </MenubarItem>
 
                                             <MenubarItem
-                                                class="gap-2 px-4 py-2 text-[13px] font-medium hover:!bg-hover"
+                                                class="gap-2 bg-error px-4 py-2 text-[13px] font-medium hover:!bg-destructive"
                                             >
                                                 <Icon
                                                     name="Trash"

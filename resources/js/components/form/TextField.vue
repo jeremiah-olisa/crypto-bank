@@ -4,18 +4,22 @@ import { InputHTMLAttributes } from 'vue';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useVModel } from '@vueuse/core';
+import FormHelpDescription from './FormHelpDescription.vue';
 
 // ==============================================================
 interface TextFieldProps {
     id: string;
     name: string;
     label?: string;
+    min?: number;
+    max?: number;
     placeholder: string;
     disabled?: boolean;
     errorMessage?: string;
     type?: InputHTMLAttributes['type'];
     modelValue?: string | number;
     defaultValue?: string | number;
+    helpDescription?: string;
 }
 // ==============================================================
 
@@ -39,9 +43,13 @@ const modelValue = useVModel(props, 'modelValue', emits, {
         <Label
             v-if="label"
             :for="id"
-            class="mb-3 inline-block text-sm font-medium"
-            >{{ label }}</Label
-        >
+            class="mb-3 flex gap-3 text-sm font-medium"
+            >{{ label }}
+            <FormHelpDescription
+                v-if="helpDescription"
+                :description="helpDescription"
+            />
+        </Label>
 
         <Input
             :id="id"
@@ -51,6 +59,8 @@ const modelValue = useVModel(props, 'modelValue', emits, {
             :disabled="disabled"
             :error="!!errorMessage"
             :placeholder="placeholder"
+            :max="max"
+            :min="min"
         />
 
         <span
