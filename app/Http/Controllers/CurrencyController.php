@@ -31,6 +31,6 @@ class CurrencyController extends Controller
      */
     public function create()
     {
-        return Inertia::render("Currency/Create");
+        return Inertia::render("Currency/CreateCurrency");
     }
 }
