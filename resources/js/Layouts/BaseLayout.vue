@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import { lightTheme, Notification, Notivue, NotivueTheme } from 'notivue';
+import {
+    lightTheme,
+    Notification,
+    Notivue,
+    NotivueSwipe,
+    NotivueTheme,
+} from 'notivue';
 import { onMounted, ref } from 'vue';
 
 const theme: NotivueTheme = {
@@ -40,7 +46,9 @@ onMounted(() => {
 
         <!-- NOTIVUE NOTIFICATION -->
         <Notivue v-slot="item">
-            <Notification :item="item" :theme="theme" />
+            <NotivueSwipe :item="item">
+                <Notification :item="item" />
+            </NotivueSwipe>
         </Notivue>
     </template>
 </template>
