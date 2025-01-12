@@ -18,7 +18,6 @@ const logo = useLogo();
             <div class="hidden items-center p-20 text-white lg:flex xl:px-40">
                 <div>
                     <Link
-                        prefetch
                         :href="route('home')"
                         class="mb-10 flex items-center gap-2"
                     >

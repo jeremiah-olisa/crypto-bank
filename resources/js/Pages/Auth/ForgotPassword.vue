@@ -52,7 +52,6 @@ const submit = () => {
                 <div class="flex gap-1">
                     <p class="text-muted">Remembered Password?</p>
                     <Link
-                        prefetch
                         :href="route('login')"
                         class="text-primary underline underline-offset-2"
                     >

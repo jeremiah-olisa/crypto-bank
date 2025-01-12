@@ -112,19 +112,11 @@ const currencies = ref([
                         trading and transfers easy and hassle-free
                     </p>
                     <div class="mt-8 flex justify-center space-x-4">
-                        <Link
-                            prefetch
-                            class="action-btn-inverse"
-                            :href="route('login')"
-                        >
+                        <Link class="action-btn-inverse" :href="route('login')">
                             <LogIn class="h-5 w-5" />
                             <span>Login</span>
                         </Link>
-                        <Link
-                            prefetch
-                            class="action-btn"
-                            :href="route('register')"
-                        >
+                        <Link class="action-btn" :href="route('register')">
                             <UserPlus class="h-5 w-5" />
                             <span>Get Started</span>
                         </Link>

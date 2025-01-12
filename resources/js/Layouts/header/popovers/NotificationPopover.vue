@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/popover';
 // DATA LIST
 import { notifications } from '@/data/notifications';
-import { Link } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3'; /* PartiallyEnd: #3632/scriptSetup.vue */
 </script>
 
 <template>

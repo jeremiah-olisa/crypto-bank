@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Header from './header/Header.vue';
 import MobileSidebar from './MobileSidebar.vue';
-import SidebarNavigation from './sidebar/SidebarNavigation.vue' /* PartiallyEnd: #3632/scriptSetup.vue */; /* PartiallyEnd: #3632/scriptSetup.vue */
+import SidebarNavigation from './sidebar/SidebarNavigation.vue' /* PartiallyEnd: #3632/scriptSetup.vue */ /* PartiallyEnd: #3632/scriptSetup.vue */; /* PartiallyEnd: #3632/scriptSetup.vue */
 </script>
 
 <template>

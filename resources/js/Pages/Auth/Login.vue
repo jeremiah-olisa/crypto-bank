@@ -2,7 +2,6 @@
 import Checkbox from '@/components/Checkbox.vue';
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
-import { axiosDefaultHeaders } from '@/constants/axios';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
 import { Link, router } from '@inertiajs/vue3';
@@ -60,7 +59,6 @@ const submit = () => {
         <template #form-action>
             <p class="text-muted">New user?</p>
             <Link
-                prefetch
                 :href="route('register')"
                 class="text-primary underline underline-offset-2"
             >
@@ -121,7 +119,6 @@ const submit = () => {
                 </div>
 
                 <Link
-                    prefetch
                     :href="route('password.request')"
                     class="text-sm text-primary underline-offset-2 transition-all hover:underline"
                 >

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card' /* PartiallyEnd: #3632/scriptSetup.vue */; /* PartiallyEnd: #3632/scriptSetup.vue */
+import { Card } from '@/components/ui/card' /* PartiallyEnd: #3632/scriptSetup.vue */ /* PartiallyEnd: #3632/scriptSetup.vue */; /* PartiallyEnd: #3632/scriptSetup.vue */
 </script>
 
 <template>

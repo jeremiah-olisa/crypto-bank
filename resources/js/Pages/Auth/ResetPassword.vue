@@ -67,7 +67,6 @@ const submit = () => {
         <template #form-action>
             <p class="text-muted">Back to</p>
             <Link
-                prefetch
                 :href="route('login')"
                 class="text-primary underline underline-offset-2"
             >

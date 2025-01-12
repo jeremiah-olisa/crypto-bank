@@ -187,12 +187,12 @@ const tableHead = [
                                             </MenubarItem>
 
                                             <MenubarItem
-                                                class="gap-2 bg-error px-4 py-2 text-[13px] font-medium hover:!bg-destructive"
+                                                class="gap-2 px-4 py-2 text-[13px] font-medium text-destructive"
                                             >
                                                 <Icon
                                                     name="Trash"
                                                     :size="18"
-                                                    class="text-muted"
+                                                    class="text-destructive"
                                                 />
                                                 Delete
                                             </MenubarItem>

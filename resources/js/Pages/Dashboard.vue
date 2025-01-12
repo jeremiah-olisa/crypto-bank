@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
-import { Head } from '@inertiajs/vue3' /* PartiallyEnd: #3632/scriptSetup.vue */; /* PartiallyEnd: #3632/scriptSetup.vue */
+import { Head } from '@inertiajs/vue3' /* PartiallyEnd: #3632/scriptSetup.vue */ /* PartiallyEnd: #3632/scriptSetup.vue */; /* PartiallyEnd: #3632/scriptSetup.vue */
 </script>
 
 <template>

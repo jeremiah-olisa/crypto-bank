@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/popover';
 // CUSTOM COMPONENT
 import Icon from '@/components/Icon.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3'; /* PartiallyEnd: #3632/scriptSetup.vue */
 </script>
 
 <template>

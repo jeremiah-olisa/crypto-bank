@@ -57,7 +57,6 @@ const submit = () => {
         <template #form-action>
             <p class="text-muted">Back to</p>
             <Link
-                prefetchs
                 :href="route('password.request')"
                 class="text-primary underline underline-offset-2"
             >

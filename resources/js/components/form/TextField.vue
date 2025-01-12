@@ -4,6 +4,7 @@ import { InputHTMLAttributes } from 'vue';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useVModel } from '@vueuse/core';
+import InputError from '../InputError.vue';
 import FormHelpDescription from './FormHelpDescription.vue';
 
 // ==============================================================
@@ -63,12 +64,6 @@ const modelValue = useVModel(props, 'modelValue', emits, {
             :min="min"
         />
 
-        <span
-            role="alert"
-            v-if="errorMessage"
-            class="ml-2 mt-2 inline-block text-xs font-medium text-red-500"
-        >
-            {{ errorMessage }}
-        </span>
+        <InputError :error-message="errorMessage" />
     </div>
 </template>

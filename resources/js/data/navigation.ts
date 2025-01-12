@@ -103,8 +103,11 @@ export const navigation = [
                 route: 'dashboard',
                 icon: 'ShieldCheck',
                 children: [
-                    { label: 'Roles', route: 'home' },
-                    { label: 'Permissions', route: 'home' },
+                    { label: 'Roles', route: 'user-management.roles' },
+                    {
+                        label: 'Permissions',
+                        route: 'user-management.permissions',
+                    },
                 ],
             },
         ],
