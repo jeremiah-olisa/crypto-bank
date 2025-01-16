@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
+import useTokenedForm from '@/hooks/useTokenedForm';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
 import { Head, Link } from '@inertiajs/vue3';
-import { useForm } from 'formjs-vue2';
 import { push } from 'notivue';
 import * as yup from 'yup';
 
@@ -15,11 +15,11 @@ defineProps<{
 const validationSchema = yup.object({
     email: yup.string().email('Invalid email').required('Email is required'),
 });
-const form = useForm(
+const form = useTokenedForm(
     {
         email: '',
     },
-    { schema: validationSchema },
+    validationSchema,
 );
 
 const submit = () => {

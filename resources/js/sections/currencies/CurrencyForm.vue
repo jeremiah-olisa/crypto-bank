@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import SelectItem from '@/components/ui/select/SelectItem.vue';
 import { Switch } from '@/components/ui/switch';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
-import { useForm } from 'formjs-vue2';
+import useTokenedForm from '@/hooks/useTokenedForm';
 import { push } from 'notivue';
 import { ref } from 'vue';
 import * as yup from 'yup';
@@ -30,7 +30,7 @@ const validationSchema = yup.object({
     image_url: yup.string().url('Image URL must be a valid URL'),
 });
 
-const form = useForm(
+const form = useTokenedForm(
     {
         name: '',
         code: '',
@@ -38,7 +38,7 @@ const form = useForm(
         image_url: '',
         is_published: true, // Default to active
     },
-    { schema: validationSchema },
+    validationSchema
 );
 
 const submit = () => {

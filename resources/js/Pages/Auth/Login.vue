@@ -2,10 +2,10 @@
 import Checkbox from '@/components/Checkbox.vue';
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
+import useTokenedForm from '@/hooks/useTokenedForm';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
-import { Link, router, usePage } from '@inertiajs/vue3';
-import { useForm } from 'formjs-vue2';
+import { Link, router } from '@inertiajs/vue3';
 import { push } from 'notivue';
 import * as yup from 'yup';
 
@@ -15,7 +15,6 @@ defineProps<{
 }>();
 
 const validationSchema = yup.object({
-    _token: yup.string().required('Token is required'),
     email: yup.string().email('Invalid email').required('Email is required'),
     password: yup
         .string()
@@ -24,15 +23,13 @@ const validationSchema = yup.object({
     remember: yup.boolean().required(),
 });
 
-const page = usePage();
-const form = useForm(
+const form = useTokenedForm(
     {
-        _token: page.props.csrf_token,
         email: '',
         password: '',
         remember: false,
     },
-    { schema: validationSchema },
+    validationSchema,
 );
 
 const submit = () => {

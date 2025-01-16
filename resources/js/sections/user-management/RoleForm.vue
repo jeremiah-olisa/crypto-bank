@@ -12,7 +12,7 @@ import TableHead from '@/components/ui/table/TableHead.vue';
 import TableHeader from '@/components/ui/table/TableHeader.vue';
 import TableRow from '@/components/ui/table/TableRow.vue';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
-import { useForm } from 'formjs-vue2';
+import useTokenedForm from '@/hooks/useTokenedForm';
 import { push } from 'notivue';
 import { computed } from 'vue';
 import * as yup from 'yup';
@@ -41,7 +41,7 @@ const validationSchema = yup.object({
     permissions: yup.array().required('Role Permission is required'),
 });
 
-const form = useForm(
+const form = useTokenedForm(
     {
         name: '',
         description: '',
@@ -50,7 +50,7 @@ const form = useForm(
             granted: false,
         })),
     },
-    { schema: validationSchema },
+    validationSchema
 );
 
 const submit = () => {

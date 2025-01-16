@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
+import useTokenedForm from '@/hooks/useTokenedForm';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
 import { Link } from '@inertiajs/vue3';
-import { useForm } from 'formjs-vue2';
 import { push } from 'notivue';
 import * as yup from 'yup';
 
@@ -29,14 +29,14 @@ const validationSchema = yup.object({
         }),
 });
 
-const form = useForm(
+const form = useTokenedForm(
     {
         token: props.token,
         email: props.email,
         password: '',
         password_confirmation: '',
     },
-    { schema: validationSchema },
+    validationSchema,
 );
 
 const submit = () => {

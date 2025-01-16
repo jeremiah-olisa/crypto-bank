@@ -4,14 +4,13 @@ import Checkbox from '@/components/Checkbox.vue';
 import InputError from '@/components/InputError.vue';
 import TextField from '@/components/form/TextField.vue';
 import { Button } from '@/components/ui/button';
+import useTokenedForm from '@/hooks/useTokenedForm';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
-import { Head, Link, router, usePage } from '@inertiajs/vue3';
-import { useForm } from 'formjs-vue2';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { push } from 'notivue';
 import * as yup from 'yup';
 
 const validationSchema = yup.object({
-    _token: yup.string().required('Token is required'),
     name: yup.string().required('Name is required'),
     email: yup.string().email('Invalid email').required('Email is required'),
     password: yup
@@ -29,17 +28,16 @@ const validationSchema = yup.object({
         .not([true], 'You must accept the terms')
         .required('Terms acceptance is required'),
 });
-const page = usePage();
-const form = useForm(
+
+const form = useTokenedForm(
     {
-        _token: page.props.csrf_token,
         name: '',
         email: '',
         password: '',
         password_confirmation: '',
         terms: false,
     },
-    { schema: validationSchema },
+    validationSchema,
 );
 
 const submit = () => {

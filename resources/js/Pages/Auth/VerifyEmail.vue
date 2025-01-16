@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Button from '@/components/ui/button/Button.vue';
+import useTokenedForm from '@/hooks/useTokenedForm';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
 import { Link } from '@inertiajs/vue3';
-import { useForm } from 'formjs-vue2';
 import { push } from 'notivue';
 import { computed } from 'vue';
 
@@ -12,7 +12,7 @@ const props = defineProps<{
 }>();
 
 // Form initialization using formjs-vue2
-const form = useForm({});
+const form = useTokenedForm({});
 
 const submit = () => {
     form.post(route('verification.send'), {
