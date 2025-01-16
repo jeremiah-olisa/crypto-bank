@@ -63,7 +63,7 @@ RUN php artisan event:clear
 RUN php artisan route:clear
 RUN php artisan view:clear
 # RUN php artisan optimize:clear
-RUN php artisan optimize      
+# RUN php artisan optimize      
 
 # Run migrations and ignore errors if DB is not available
 RUN php artisan migrate --force
