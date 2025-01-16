@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(UrlGenerator $url)
     {
         Vite::prefetch(concurrency: 3);
-        if (env('APP_ENV') == 'production' || request()->isSecure()) {
+        if (env('APP_ENV') == 'production' || strtolower(env('APP_URL_SCHEME')) == 'https') {
             $url->forceScheme('https');
         }
     }
