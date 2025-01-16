@@ -59,7 +59,7 @@ RUN php artisan config:clear
 
 # Clear cache and optimize the app
 # Continue even if cache clear fails (if DB is not ready)
-RUN php artisan optimize:clear
+# RUN php artisan optimize:clear
 # Continue even if optimization fails (if DB is not ready)
 RUN php artisan optimize      
 # Run migrations and ignore errors if DB is not available
