@@ -57,7 +57,7 @@ RUN composer dump-autoload
 
 # Fix environment for database connection
 RUN php artisan config:clear
-RUN php artisan cache:clear
+# RUN php artisan cache:clear
 RUN php artisan optimize:clear
 RUN php artisan optimize      
 
