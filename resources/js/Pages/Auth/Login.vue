@@ -3,9 +3,8 @@ import Checkbox from '@/components/Checkbox.vue';
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
-import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
-import { Link, router } from '@inertiajs/vue3';
-import { useForm } from 'formjs-vue2';
+import { Link, router, useForm } from '@inertiajs/vue3';
+// import { useForm } from 'formjs-vue2';
 import { push } from 'notivue';
 import * as yup from 'yup';
 
@@ -22,17 +21,14 @@ const validationSchema = yup.object({
         .required('Password is required'),
     remember: yup.boolean().required(),
 });
-const form = useForm(
-    {
-        email: '',
-        password: '',
-        remember: false,
-    },
-    { schema: validationSchema },
-);
+const form = useForm({
+    email: '',
+    password: '',
+    remember: false,
+});
 
 const submit = () => {
-    form.validate();
+    // form.validate();
 
     if (form.hasErrors) return;
 
@@ -42,8 +38,8 @@ const submit = () => {
             push.success('Login successful');
             router.visit(route('dashboard'));
         },
-        onError: throwAxiosError,
-        onErrors: pushErrorMessages,
+        // onError: throwAxiosError,
+        // onErrors: pushErrorMessages,
     });
 };
 </script>
@@ -78,7 +74,6 @@ const submit = () => {
                     required
                     autofocus
                     autocomplete="username"
-                    @input="form.validate('email')"
                 />
                 <TextField
                     id="password"
@@ -91,7 +86,6 @@ const submit = () => {
                     autocomplete="current-password"
                     v-model="form.password"
                     :error-message="form.errors.password"
-                    @input="form.validate('password')"
                 />
             </div>
 
@@ -104,7 +98,6 @@ const submit = () => {
                             :checked="form.remember"
                             :onUpdate:checked="
                                 (value) => {
-                                    form.validate('remember');
                                     form.remember = value;
                                 }
                             "
