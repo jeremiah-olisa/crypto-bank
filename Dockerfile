@@ -56,8 +56,12 @@ RUN composer install --no-interaction --prefer-dist --ignore-platform-reqs
 RUN composer dump-autoload
 
 # Fix environment for database connection
-RUN php artisan config:clear
 # RUN php artisan cache:clear
+RUN php artisan clear-compiled
+RUN php artisan config:clear
+RUN php artisan event:clear
+RUN php artisan route:clear
+RUN php artisan view:clear
 # RUN php artisan optimize:clear
 RUN php artisan optimize      
 
