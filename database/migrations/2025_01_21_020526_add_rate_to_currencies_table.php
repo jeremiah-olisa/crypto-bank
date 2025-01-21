@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('currencies', function (Blueprint $table) {
-            $table->boolean('rate')->default(15);
+            $table->float('rate', 8)->default(15);
         });
     }
 

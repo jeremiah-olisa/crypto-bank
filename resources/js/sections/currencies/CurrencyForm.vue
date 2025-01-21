@@ -6,9 +6,7 @@ import Button from '@/components/ui/button/Button.vue';
 import { Label } from '@/components/ui/label';
 import SelectItem from '@/components/ui/select/SelectItem.vue';
 import { Switch } from '@/components/ui/switch';
-import { pushErrorMessages } from '@/lib/utils';
-import { useForm } from '@inertiajs/vue3';
-import { push } from 'notivue';
+import { useListNewCurrencyForm } from '@/hooks/forms';
 import { ref } from 'vue';
 
 const props = defineProps<{
@@ -21,42 +19,7 @@ const categories = [
     { id: 2, title: 'Cryptocurrency' },
 ];
 
-// const validationSchema = yup.object({
-//     name: yup.string().required('Currency Name is required'),
-//     code: yup.string().min(1).max(4).required('Currency Code is required'),
-//     category: yup.string().required('Category is required'),
-//     rate: yup.number().min(0).max(100).required('Rate is required'),
-//     is_published: yup.boolean().required('Is Published is required'),
-//     image_url: yup.string().url('Image URL must be a valid URL'),
-// });
-
-const defaultValues = {
-    name: '',
-    code: '',
-    category: '',
-    rate: NaN,
-    image_url: '',
-    is_published: true, // Default to active
-};
-const form = useForm(defaultValues);
-
-const submit = () => {
-    if (form.hasErrors) return;
-
-    const notification = push.promise('Adding New Currency');
-    form.post(route('currency.store'), {
-        onSuccess: () => {
-            form.reset();
-            notification.resolve('New Currency listed successfully');
-        },
-        onError: (e: Record<string, string>) => {
-            notification.reject('Failed to added new currency');
-            pushErrorMessages(e, defaultValues);
-            // throwAxiosError(e.);
-        },
-        showProgress: true,
-    });
-};
+const { form, submit } = useListNewCurrencyForm();
 
 const handleFileUpload = (event: any) => {
     const file = event.target.files[0];

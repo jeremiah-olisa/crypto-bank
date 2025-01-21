@@ -1,1 +1,0 @@
-import{d as s,h as t,t as o,k as r,o as a}from"./app-Cwyhr4wB.js";const n={key:0,role:"alert",class:"ml-2 mt-2 inline-block text-xs font-medium text-red-500"},l=s({__name:"InputError",props:{message:{}},setup(m){return(e,p)=>e.message?(a(),t("span",n,o(e.message),1)):r("",!0)}});export{l as _};

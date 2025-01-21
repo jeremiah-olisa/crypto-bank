@@ -37,3 +37,24 @@ export const useRegisterForm = () => {
         },
     });
 };
+
+export const useListNewCurrencyForm = (
+    defaultValues = {
+        name: '',
+        code: '',
+        category: '',
+        rate: NaN,
+        image_url: '',
+        is_published: true, // Default to active
+    },
+) => {
+    return useFormHandler({
+        defaultValues,
+        route: route('currency.store'),
+        messages: {
+            pending: 'Adding New Currency',
+            success: 'New Currency listed successfully',
+            error: 'Failed to add new currency',
+        },
+    });
+};
