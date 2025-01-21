@@ -1,4 +1,5 @@
 export interface IStoreCurrencyForm {
+    id: number;
     name: string;
     code: string;
     category: string;

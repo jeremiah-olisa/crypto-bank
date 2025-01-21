@@ -31,6 +31,7 @@ export interface ICurrencyItem {
     status: string;
     rate: number;
     price: number;
+    can_delete: boolean;
 };
 
 export interface IPaginatedData {

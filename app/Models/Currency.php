@@ -10,11 +10,11 @@ class Currency extends Model
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
-    protected $appends = ['status', 'price'];
+    protected $appends = ['status', 'price', 'can_delete'];
 
     public function transactions()
     {
-        $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class);
     }
 
     /**
@@ -32,6 +32,13 @@ class Currency extends Model
     {
         return $this?->is_published ? "Published" : "Draft";
     }
+
+    public function getCanDeleteAttribute()
+    {
+        // TODO: fix error from this later
+        return true ?? !$this->transactions()->exists(); // Returns true if there are no transactions
+    }
+
 
 
     public function getPriceAttribute()

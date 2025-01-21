@@ -58,7 +58,6 @@ defineProps<{
                     </SelectTrigger>
 
                     <SelectContent>
-                        <SelectItem value="">All</SelectItem>
                         <SelectItem value="1">Published</SelectItem>
                         <SelectItem value="0">Draft</SelectItem>
                     </SelectContent>

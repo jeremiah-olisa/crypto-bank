@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCurrencyRequest extends FormRequest
 {
@@ -12,8 +13,18 @@ class UpdateCurrencyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:currencies,name',
-            'code' => 'required|string|unique:currencies,code|min:1|max:5',
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('currencies', 'name')->ignore(request()->data('id')), // Ignore if updating the same record
+            ],
+            'code' => [
+                'required',
+                'string',
+                'min:1',
+                'max:5',
+                Rule::unique('currencies', 'code')->ignore(request()->data('id')), // Ignore if updating the same record
+            ],
             'category' => 'required|string',
             'is_published' => 'required|boolean',
             'image_url' => 'required|url',

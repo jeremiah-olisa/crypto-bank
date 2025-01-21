@@ -34,7 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('/create', [CurrencyController::class, 'store'])->name('currency.store');
 
             Route::get('/edit/{currencyId}', [CurrencyController::class, 'edit'])->name('currency.edit');
-            Route::get('/update/{currencyId}', [CurrencyController::class, 'update'])->name('currency.update');
+            Route::put('/update/{currencyId}', [CurrencyController::class, 'update'])->name('currency.update');
+            Route::delete('/{currencyId}/delete', [CurrencyController::class, 'delete'])->name('currency.delete');
         });
 
         Route::prefix('user-management')->group(function () {

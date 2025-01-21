@@ -63,11 +63,12 @@ export const useListNewCurrencyForm = (
 export const useUpdateCurrencyForm = (defaultValues: IStoreCurrencyForm) => {
     return useFormHandler({
         defaultValues,
-        route: route('currency.update'),
+        route: route('currency.update', { currencyId: defaultValues.id }),
+        method: 'put',
         messages: {
             pending: 'Updating Currency',
             success: 'Currency updated successfully',
-            error: 'Failed to updatew currency',
+            error: 'Failed to update currency',
         },
     });
 };

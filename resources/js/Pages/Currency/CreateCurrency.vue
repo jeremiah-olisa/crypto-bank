@@ -3,7 +3,6 @@
         <Head :title="title" />
         <Card class="mx-auto mb-6 mt-2 max-w-screen-lg p-6">
             <CardTitle class="mb-6 text-base">{{ title }}</CardTitle>
-            {{ currency }}
             <CurrencyForm :currency="currency" />
         </Card>
     </DefaultLayout>
@@ -21,6 +20,6 @@ const props = defineProps<{
 }>();
 
 const title = computed(() =>
-    props.currency ? 'List New Currency' : 'Update Currency',
+    !props.currency ? 'List New Currency' : 'Update Currency',
 );
 </script>

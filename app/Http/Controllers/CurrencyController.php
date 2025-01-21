@@ -56,17 +56,31 @@ class CurrencyController extends Controller
 
         $currency = $this->currencyService->getCurrencyById($currencyId);
 
+        $props = ['currency' => $currency];
         if ($request->wantsJson())
-            return $this->api_response("Currency retrived successfully", ['data' => $currency]);
+            return $this->api_response("Currency retrived successfully", $props);
 
-        return Inertia::render("Currency/CreateCurrency");
+        return Inertia::render("Currency/CreateCurrency", $props);
+    }
+
+
+    public function delete(int $currencyId, Request $request)
+    {
+
+        $currency = $this->currencyService->delete($currencyId);
+
+        $props = ['currency' => $currency];
+        if ($request->wantsJson())
+            return $this->api_response("Currency deleted successfully", $props);
+
+        return redirect()->route('currency.list')->with('success', 'Currency deleted successfully');
     }
 
     public function update(int $currencyId, UpdateCurrencyRequest $request)
     {
 
         $payload  = $request->validated();
-        $currency = $this->currencyService->create($payload);
+        $currency = $this->currencyService->update($currencyId, $payload);
 
         if ($request->wantsJson())
             return $this->api_response("Currency update successfully", ['data' => $currency]);

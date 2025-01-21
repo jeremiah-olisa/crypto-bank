@@ -177,7 +177,15 @@ const tableHead = [
                                             </MenubarItem>
 
                                             <MenubarItem
+                                                v-if="currency.can_delete"
                                                 class="gap-2 px-4 py-2 text-[13px] font-medium text-destructive"
+                                                :as="Link"
+                                                :href="
+                                                    route('currency.delete', {
+                                                        currencyId: currency.id,
+                                                    })
+                                                "
+                                                method="delete"
                                             >
                                                 <Icon
                                                     name="Trash"
