@@ -144,7 +144,11 @@ const tableHead = [
                                         <MenubarContent align="end">
                                             <MenubarItem
                                                 :as="Link"
-                                                :href="`/products/${currency.id}`"
+                                                :href="
+                                                    route('currency.edit', {
+                                                        currencyId: currency.id,
+                                                    })
+                                                "
                                                 class="gap-2 px-4 py-2 text-[13px] font-medium hover:!bg-hover"
                                             >
                                                 <Icon
@@ -157,7 +161,11 @@ const tableHead = [
 
                                             <MenubarItem
                                                 :as="Link"
-                                                :href="`/products/${currency.id}/overview`"
+                                                :href="
+                                                    route('currency.details', {
+                                                        currencyId: currency.id,
+                                                    })
+                                                "
                                                 class="gap-2 px-4 py-2 text-[13px] font-medium hover:!bg-hover"
                                             >
                                                 <Icon

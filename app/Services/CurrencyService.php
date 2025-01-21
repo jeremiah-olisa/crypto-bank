@@ -20,8 +20,14 @@ class CurrencyService
     {
         return $this->currencyRepository->create($data);
     }
+
     public function paginated(array $queryParam, int $perPage = 15)
     {
         return $this->currencyRepository->advancedCursorPaginate($queryParam, $perPage);
+    }
+
+    public function getCurrencyById(int $currencyId)
+    {
+        return $this->currencyRepository->findOneOrThrow($currencyId);
     }
 }

@@ -1,3 +1,4 @@
+import { IStoreCurrencyForm } from '@/types/currency';
 import { useFormHandler } from './useFormHandler';
 
 export const useLoginForm = () => {
@@ -46,7 +47,7 @@ export const useListNewCurrencyForm = (
         rate: NaN,
         image_url: '',
         is_published: true, // Default to active
-    },
+    } as IStoreCurrencyForm,
 ) => {
     return useFormHandler({
         defaultValues,
@@ -55,6 +56,18 @@ export const useListNewCurrencyForm = (
             pending: 'Adding New Currency',
             success: 'New Currency listed successfully',
             error: 'Failed to add new currency',
+        },
+    });
+};
+
+export const useUpdateCurrencyForm = (defaultValues: IStoreCurrencyForm) => {
+    return useFormHandler({
+        defaultValues,
+        route: route('currency.update'),
+        messages: {
+            pending: 'Updating Currency',
+            success: 'Currency updated successfully',
+            error: 'Failed to updatew currency',
         },
     });
 };

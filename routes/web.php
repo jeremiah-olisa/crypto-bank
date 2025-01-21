@@ -28,9 +28,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
         Route::prefix('currency')->group(function () {
+            Route::get('/{currencyId}/details', [CurrencyController::class, 'index'])->name('currency.details');
             Route::get('/list', [CurrencyController::class, 'index'])->name('currency.list');
             Route::get('/create', [CurrencyController::class, 'create'])->name('currency.create');
             Route::post('/create', [CurrencyController::class, 'store'])->name('currency.store');
+
+            Route::get('/edit/{currencyId}', [CurrencyController::class, 'edit'])->name('currency.edit');
+            Route::get('/update/{currencyId}', [CurrencyController::class, 'update'])->name('currency.update');
         });
 
         Route::prefix('user-management')->group(function () {

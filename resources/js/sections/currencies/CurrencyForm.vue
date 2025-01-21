@@ -6,11 +6,12 @@ import Button from '@/components/ui/button/Button.vue';
 import { Label } from '@/components/ui/label';
 import SelectItem from '@/components/ui/select/SelectItem.vue';
 import { Switch } from '@/components/ui/switch';
-import { useListNewCurrencyForm } from '@/hooks/forms';
+import { useListNewCurrencyForm, useUpdateCurrencyForm } from '@/hooks/forms';
+import { IStoreCurrencyForm } from '@/types/currency';
 import { ref } from 'vue';
 
 const props = defineProps<{
-    currency?: Record<string, any>;
+    currency?: IStoreCurrencyForm;
 }>();
 
 const imageSourceType = ref('url');
@@ -19,7 +20,9 @@ const categories = [
     { id: 2, title: 'Cryptocurrency' },
 ];
 
-const { form, submit } = useListNewCurrencyForm();
+const { form, submit } = props.currency
+    ? useUpdateCurrencyForm(props.currency)
+    : useListNewCurrencyForm(props.currency);
 
 const handleFileUpload = (event: any) => {
     const file = event.target.files[0];

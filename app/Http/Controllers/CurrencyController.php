@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCurrencyRequest;
+use App\Http\Requests\UpdateCurrencyRequest;
 use App\Services\CurrencyService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -48,5 +49,29 @@ class CurrencyController extends Controller
 
         return redirect()->route('currency.list')
             ->with('success', 'New Currency listed successfully');
+    }
+
+    public function edit(int $currencyId, Request $request)
+    {
+
+        $currency = $this->currencyService->getCurrencyById($currencyId);
+
+        if ($request->wantsJson())
+            return $this->api_response("Currency retrived successfully", ['data' => $currency]);
+
+        return Inertia::render("Currency/CreateCurrency");
+    }
+
+    public function update(int $currencyId, UpdateCurrencyRequest $request)
+    {
+
+        $payload  = $request->validated();
+        $currency = $this->currencyService->create($payload);
+
+        if ($request->wantsJson())
+            return $this->api_response("Currency update successfully", ['data' => $currency]);
+
+        return redirect()->route('currency.list')
+            ->with('success', 'Currency updated successfully');
     }
 }
