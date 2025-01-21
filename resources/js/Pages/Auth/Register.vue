@@ -4,57 +4,10 @@ import Checkbox from '@/components/Checkbox.vue';
 import InputError from '@/components/InputError.vue';
 import TextField from '@/components/form/TextField.vue';
 import { Button } from '@/components/ui/button';
-import useTokenedForm from '@/hooks/useTokenedForm';
-import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
-import { Head, Link, router } from '@inertiajs/vue3';
-import { push } from 'notivue';
-import * as yup from 'yup';
+import { useRegisterForm } from '@/hooks/forms';
+import { Head, Link } from '@inertiajs/vue3';
 
-const validationSchema = yup.object({
-    name: yup.string().required('Name is required'),
-    email: yup.string().email('Invalid email').required('Email is required'),
-    password: yup
-        .string()
-        .min(6, 'Password must be at least 6 characters')
-        .required('Password is required'),
-    password_confirmation: yup
-        .string()
-        .min(6, 'Password must be at least 6 characters')
-        .test('passwordMatch', 'Password do not match', function (value) {
-            return this.parent.password === value;
-        }),
-    terms: yup
-        .boolean()
-        .not([true], 'You must accept the terms')
-        .required('Terms acceptance is required'),
-});
-
-const form = useTokenedForm(
-    {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
-        terms: false,
-    },
-    validationSchema,
-);
-
-const submit = () => {
-    form.validate();
-
-    if (form.hasErrors) return;
-
-    form.post(route('register'), {
-        onSuccess: () => {
-            form.reset();
-            push.success('User registered successfully');
-            router.visit(route('dashboard'));
-        },
-        onError: throwAxiosError,
-        onErrors: pushErrorMessages,
-    });
-};
+const { form, submit } = useRegisterForm();
 </script>
 
 <template>
@@ -90,7 +43,6 @@ const submit = () => {
                     autofocus
                     autocomplete="name"
                     :error-message="form.errors.name"
-                    @input="form.validate('name')"
                 />
 
                 <TextField
@@ -104,7 +56,6 @@ const submit = () => {
                     required
                     autocomplete="username"
                     :error-message="form.errors.email"
-                    @input="form.validate('email')"
                 />
 
                 <TextField
@@ -118,7 +69,6 @@ const submit = () => {
                     required
                     autocomplete="new-password"
                     :error-message="form.errors.password"
-                    @input="form.validate('password')"
                 />
 
                 <TextField
@@ -132,7 +82,6 @@ const submit = () => {
                     required
                     autocomplete="new-password"
                     :error-message="form.errors.password_confirmation"
-                    @input="form.validate('password_confirmation')"
                 />
             </div>
 
@@ -144,7 +93,6 @@ const submit = () => {
                         :checked="form.terms"
                         :onUpdate:checked="
                             (value) => {
-                                form.validate('terms');
                                 form.terms = value;
                             }
                         "

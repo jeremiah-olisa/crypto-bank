@@ -2,51 +2,16 @@
 import Checkbox from '@/components/Checkbox.vue';
 import TextField from '@/components/form/TextField.vue';
 import Button from '@/components/ui/button/Button.vue';
-import useTokenedForm from '@/hooks/useTokenedForm';
+import { useLoginForm } from '@/hooks/forms';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
-import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
-import { Link, router } from '@inertiajs/vue3';
-import { push } from 'notivue';
-import * as yup from 'yup';
+import { Link } from '@inertiajs/vue3';
 
 defineProps<{
     canResetPassword?: boolean;
     status?: string;
 }>();
 
-const validationSchema = yup.object({
-    email: yup.string().email('Invalid email').required('Email is required'),
-    password: yup
-        .string()
-        .min(6, 'Password must be at least 6 characters')
-        .required('Password is required'),
-    remember: yup.boolean().required(),
-});
-
-const form = useTokenedForm(
-    {
-        email: '',
-        password: '',
-        remember: false,
-    },
-    validationSchema,
-);
-
-const submit = () => {
-    form.validate();
-
-    if (form.hasErrors) return;
-
-    form.post(route('login'), {
-        onSuccess: () => {
-            form.reset('password');
-            push.success('Login successful');
-            router.visit(route('dashboard'));
-        },
-        onError: throwAxiosError,
-        onErrors: pushErrorMessages,
-    });
-};
+const { form, submit } = useLoginForm();
 </script>
 
 <template>
@@ -79,7 +44,6 @@ const submit = () => {
                     required
                     autofocus
                     autocomplete="username"
-                    @input="form.validate('email')"
                 />
                 <TextField
                     id="password"
@@ -92,7 +56,6 @@ const submit = () => {
                     autocomplete="current-password"
                     v-model="form.password"
                     :error-message="form.errors.password"
-                    @input="form.validate('password')"
                 />
             </div>
 
@@ -105,7 +68,6 @@ const submit = () => {
                             :checked="form.remember"
                             :onUpdate:checked="
                                 (value) => {
-                                    form.validate('remember');
                                     form.remember = value;
                                 }
                             "
