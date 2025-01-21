@@ -15,13 +15,13 @@ const { form, submit } = useLoginForm();
 </script>
 
 <template>
+    <Head title="Log in" />
     <AuthLayout
         form-title="Sign In"
         title="Welcome Back to the Future of Crypto Trading!"
         subtitle="Your Digital Assets Are Just a Click Away"
         description="Sign in to access your crypto portfolio and start trading with ease. Our platform offers secure, fast, and transparent exchanges, providing you with everything you need to manage your digital assets efficiently. "
     >
-        <Head title="Log in" />
         <template #form-action>
             <p class="text-muted">New user?</p>
             <Link
@@ -89,6 +89,7 @@ const { form, submit } = useLoginForm();
                 </Link>
             </div>
 
+            {{ form.processing }}
             <Button
                 :disabled="form.processing"
                 :loading="form.processing"

@@ -6,7 +6,7 @@ import { NotificationClearMethods, push, PushPromiseReturn } from 'notivue';
 interface UseFormHandlerOptions<T> {
     defaultValues: T;
     route: string;
-    method?: 'post' | 'put' | 'patch' | 'delete';
+    method?: 'post' | 'get' | 'put' | 'patch' | 'delete';
     messages?: {
         pending?: string;
         success?: string;
@@ -67,8 +67,22 @@ export function useFormHandler<T extends object>(
             ? metaOptions(notification)
             : defaultOptions;
 
-        const formAction = form[method];
-        formAction(route, options);
+        switch (method) {
+            case 'post':
+                form.post(route, options);
+                break;
+            case 'get':
+                form.get(route, options);
+                break;
+            case 'put':
+                form.put(route, options);
+                break;
+            case 'delete':
+                form.delete(route, options);
+                break;
+            default:
+                throw new Error(`Invalid HTTP Method '${method}'`);
+        }
     };
 
     return { form, submit };
