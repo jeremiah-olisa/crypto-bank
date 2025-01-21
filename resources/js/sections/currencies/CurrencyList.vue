@@ -24,32 +24,13 @@ import {
 // CUSTOM COMPONENTS
 // Custom Components
 import Icon from '@/components/Icon.vue';
+import { ICurrencyItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 
 // Sample Data Array
-const currencies = [
-    {
-        id: 1,
-        name: 'US Dollar',
-        code: 'USD',
-        category: 'Fiat',
-        createdAt: '2025-01-01',
-        status: 'Published',
-        rate: 15,
-        price: 100,
-    },
-    {
-        id: 2,
-        name: 'Bitcoin',
-        code: 'BTC',
-        category: 'Cryptocurrency',
-        createdAt: '2025-01-02',
-        status: 'Draft',
-        rate: 3,
-        price: 50000,
-    },
-    // Add more currencies as needed
-];
+defineProps<{
+    currencies: ICurrencyItem[];
+}>();
 
 // Table Header Titles
 const tableHead = [
@@ -63,7 +44,7 @@ const tableHead = [
 </script>
 
 <template>
-    <Card class="mb-6">
+    <Card class="">
         <Scrollbar>
             <!-- Currencies Table -->
             <Table class="min-w-[1200px]">
@@ -81,7 +62,7 @@ const tableHead = [
 
                 <TableBody>
                     <!-- NO DATA MESSAGE -->
-                    <TableRow v-if="currencies.length === 0">
+                    <TableRow v-if="currencies?.length === 0">
                         <TableCell
                             colspan="7"
                             class="m-4 bg-slate-200/20 py-24 text-center"
@@ -94,7 +75,7 @@ const tableHead = [
                     </TableRow>
 
                     <!-- RENDER CURRENCIES -->
-                    <template v-if="currencies.length > 0">
+                    <template v-if="currencies?.length > 0">
                         <TableRow
                             v-for="currency in currencies"
                             :key="currency.id"
@@ -114,7 +95,7 @@ const tableHead = [
                             </TableCell>
 
                             <!-- Created At -->
-                            <TableCell>{{ currency.createdAt }}</TableCell>
+                            <TableCell>{{ currency.created_at }}</TableCell>
 
                             <!-- Price -->
                             <TableCell>{{ currency.price }}</TableCell>
@@ -138,7 +119,8 @@ const tableHead = [
                             <TableCell>
                                 <Badge
                                     :variant="
-                                        currency.status === 'Published'
+                                        currency.status.toLowerCase() ==
+                                        'published'
                                             ? 'success'
                                             : 'warning'
                                     "

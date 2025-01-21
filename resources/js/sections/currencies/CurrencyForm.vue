@@ -6,13 +6,12 @@ import Button from '@/components/ui/button/Button.vue';
 import { Label } from '@/components/ui/label';
 import SelectItem from '@/components/ui/select/SelectItem.vue';
 import { Switch } from '@/components/ui/switch';
-import { pushErrorMessages, throwAxiosError } from '@/lib/utils';
-import useTokenedForm from '@/hooks/useTokenedForm';
+import { pushErrorMessages } from '@/lib/utils';
+import { useForm } from '@inertiajs/vue3';
 import { push } from 'notivue';
 import { ref } from 'vue';
-import * as yup from 'yup';
 
-defineProps<{
+const props = defineProps<{
     currency?: Record<string, any>;
 }>();
 
@@ -22,38 +21,40 @@ const categories = [
     { id: 2, title: 'Cryptocurrency' },
 ];
 
-const validationSchema = yup.object({
-    name: yup.string().required('Currency Name is required'),
-    code: yup.string().required('Currency Code is required'),
-    category: yup.string().required('Category is required'),
-    is_published: yup.boolean().required('Is Published is required'),
-    image_url: yup.string().url('Image URL must be a valid URL'),
-});
+// const validationSchema = yup.object({
+//     name: yup.string().required('Currency Name is required'),
+//     code: yup.string().min(1).max(4).required('Currency Code is required'),
+//     category: yup.string().required('Category is required'),
+//     rate: yup.number().min(0).max(100).required('Rate is required'),
+//     is_published: yup.boolean().required('Is Published is required'),
+//     image_url: yup.string().url('Image URL must be a valid URL'),
+// });
 
-const form = useTokenedForm(
-    {
-        name: '',
-        code: '',
-        category: '',
-        image_url: '',
-        is_published: true, // Default to active
-    },
-    validationSchema
-);
+const defaultValues = {
+    name: '',
+    code: '',
+    category: '',
+    rate: NaN,
+    image_url: '',
+    is_published: true, // Default to active
+};
+const form = useForm(defaultValues);
 
 const submit = () => {
-    form.validate();
-
     if (form.hasErrors) return;
 
-    form.post(route('login'), {
+    const notification = push.promise('Adding New Currency');
+    form.post(route('currency.store'), {
         onSuccess: () => {
             form.reset();
-            push.success('Login successful');
-            // router.visit(route('dashboard'));
+            notification.resolve('New Currency listed successfully');
         },
-        onError: throwAxiosError,
-        onErrors: pushErrorMessages,
+        onError: (e: Record<string, string>) => {
+            notification.reject('Failed to added new currency');
+            pushErrorMessages(e, defaultValues);
+            // throwAxiosError(e.);
+        },
+        showProgress: true,
     });
 };
 
@@ -70,6 +71,7 @@ const handleFileUpload = (event: any) => {
         <TextField
             id="name"
             name="name"
+            v-model="form.name"
             label="Currency Name"
             placeholder="Enter currency name"
             :error-message="form.errors.name"
@@ -78,6 +80,7 @@ const handleFileUpload = (event: any) => {
         <TextField
             id="code"
             name="code"
+            v-model="form.code"
             label="Currency Code"
             placeholder="Enter currency code"
             :error-message="form.errors.code"
@@ -86,18 +89,20 @@ const handleFileUpload = (event: any) => {
         <TextField
             id="rate"
             name="rate"
+            v-model="form.rate"
             type="number"
             :min="1"
             :max="100"
             label="Currency Rate"
             placeholder="Enter currency rate"
             help-description="Platform's percentage markup over the market price."
-            :error-message="form.errors.code"
+            :error-message="form.errors.rate"
         />
 
         <SelectField
             id="category"
             name="category"
+            v-model="form.category"
             label="Currency Category"
             placeholder="Select category"
             :error-message="form.errors.category"

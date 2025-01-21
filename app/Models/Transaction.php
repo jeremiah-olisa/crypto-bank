@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    //
+    public $guarded = ['id', 'created_at', 'updated_at'];
+
 }

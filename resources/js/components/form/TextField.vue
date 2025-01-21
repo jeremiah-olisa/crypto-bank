@@ -64,6 +64,6 @@ const modelValue = useVModel(props, 'modelValue', emits, {
             :min="min"
         />
 
-        <InputError :error-message="errorMessage" />
+        <InputError :message="errorMessage" />
     </div>
 </template>

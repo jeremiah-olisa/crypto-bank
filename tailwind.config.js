@@ -50,9 +50,9 @@ module.exports = {
                     light: 'rgba(140, 142, 255, 0.24)',
                 },
                 success: {
-                    dark: '#209e5f',
-                    DEFAULT: '#09ba70',
-                    light: '#09ba702c',
+                    dark: 'var(--success-dark)',
+                    DEFAULT: 'var(--success)',
+                    light: 'var(--success-light)',
                 },
                 warning: {
                     dark: '#d88619',

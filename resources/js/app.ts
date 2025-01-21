@@ -11,6 +11,7 @@ import { createPinia } from 'pinia';
 import VueApexCharts from 'vue3-apexcharts';
 
 import 'notivue/animations.css';
+import 'notivue/notification-progress.css';
 import 'notivue/notification.css';
 import 'nprogress/nprogress.css';
 import 'simplebar-vue/dist/simplebar.min.css';

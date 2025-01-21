@@ -46,6 +46,10 @@
         --gradient-2: linear-gradient(250deg,
                 #fff 2.51%,
                 rgba(212, 241, 255, 0.54) 96.8%);
+
+        --success: '#09ba70';
+        --success-dark: '#209e5f';
+        --success-light: '#09ba702c';
     }
 
     .dark {

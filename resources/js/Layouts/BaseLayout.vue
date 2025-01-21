@@ -1,12 +1,15 @@
 <script lang="ts" setup>
+import { usePage } from '@inertiajs/vue3';
 import {
     lightTheme,
     Notification,
+    NotificationProgress,
     Notivue,
     NotivueSwipe,
     NotivueTheme,
+    push,
 } from 'notivue';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const theme: NotivueTheme = {
     ...lightTheme,
@@ -19,8 +22,14 @@ const theme: NotivueTheme = {
 
 const isLoading = ref(true);
 
+const page = usePage();
+const flash = computed(() => page.props.flash as any);
 onMounted(() => {
     isLoading.value = false;
+
+    if (flash.value.success) push.success(flash.value.success);
+    if (flash.value.error) push.error(flash.value.error);
+    if (flash.value.info) push.info(flash.value.info);
 });
 </script>
 
@@ -47,7 +56,9 @@ onMounted(() => {
         <!-- NOTIVUE NOTIFICATION -->
         <Notivue v-slot="item">
             <NotivueSwipe :item="item">
-                <Notification :item="item" />
+                <Notification :item="item" :theme="theme">
+                    <NotificationProgress :item="item" />
+                </Notification>
             </NotivueSwipe>
         </Notivue>
     </template>

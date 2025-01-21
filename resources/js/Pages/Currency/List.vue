@@ -11,15 +11,21 @@ import {
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import { Head, router } from '@inertiajs/vue3';
 // CUSTOM COMPONENTS
+import CursorTablePagination from '@/components/CursorTablePagination.vue';
 import Icon from '@/components/Icon.vue';
+import { useQuerySync } from '@/hooks/useQuerySync';
 import CurrencyList from '@/sections/currencies/CurrencyList.vue';
-import { reactive } from 'vue';
-const state = reactive({
-    filters: {
-        search: '',
-        status: '',
-    },
+import { ICurrencyItem, IPaginatedData } from '@/types';
+
+const state = useQuerySync({
+    name: '',
+    is_published: '',
 });
+
+defineProps<{
+    currencies: ICurrencyItem[];
+    paginated: IPaginatedData;
+}>();
 </script>
 <template>
     <DefaultLayout>
@@ -33,9 +39,9 @@ const state = reactive({
             >
                 <div class="relative w-full">
                     <Input
-                        v-model="state.filters.search"
+                        v-model="state.name"
                         type="search"
-                        placeholder="Find Product"
+                        placeholder="Find Currency"
                         class="rounded-lg ps-9"
                     />
                     <Icon
@@ -46,15 +52,15 @@ const state = reactive({
                     />
                 </div>
 
-                <Select v-model="state.filters.status">
+                <Select v-model="state.is_published">
                     <SelectTrigger>
                         <SelectValue placeholder="Select a Status" />
                     </SelectTrigger>
 
                     <SelectContent>
-                        <SelectItem value="all">All</SelectItem>
-                        <SelectItem value="published">Published</SelectItem>
-                        <SelectItem value="draft">Draft</SelectItem>
+                        <SelectItem value="">All</SelectItem>
+                        <SelectItem value="1">Published</SelectItem>
+                        <SelectItem value="0">Draft</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -65,7 +71,10 @@ const state = reactive({
             </Button>
         </div>
 
-        <CurrencyList />
+        <div class="flex flex-col gap-4 py-5">
+            <CurrencyList :currencies="currencies" />
+            <CursorTablePagination :paginated="paginated" />
+        </div>
     </DefaultLayout>
 </template>
 

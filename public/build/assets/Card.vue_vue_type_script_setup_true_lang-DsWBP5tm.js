@@ -1,1 +1,0 @@
-import{c as o}from"./index-Bli-pLwk.js";import{d as a,o as n,j as d,q as t,s as c,u as l}from"./app-Df2toIYO.js";const f=a({__name:"Card",props:{class:{}},setup(r){const s=r;return(e,m)=>(n(),d("div",{class:c(l(o)("rounded-xl border border-[#F1F6F9] bg-card text-card-foreground shadow-sm dark:border-gray-700/30",s.class))},[t(e.$slots,"default")],2))}});export{f as _};

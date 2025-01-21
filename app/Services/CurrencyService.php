@@ -15,4 +15,13 @@ class CurrencyService
     {
         $this->currencyRepository = $currencyRepository;
     }
+
+    public function create(array $data)
+    {
+        return $this->currencyRepository->create($data);
+    }
+    public function paginated(array $queryParam, int $perPage = 15)
+    {
+        return $this->currencyRepository->advancedCursorPaginate($queryParam, $perPage);
+    }
 }

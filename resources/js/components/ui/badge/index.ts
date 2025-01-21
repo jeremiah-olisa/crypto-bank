@@ -9,7 +9,7 @@ export const badgeVariants = cva(
                 default: 'border-transparent bg-primary text-white',
                 secondary: 'border-transparent bg-gray-600 text-white',
                 destructive: 'border-transparent bg-error text-white',
-                success: 'border-transparent bg-success text-white',
+                success: 'border-transparent bg-green-400 bg-success text-white',
                 warning: 'border-transparent bg-warning text-white',
                 info: 'border-transparent bg-info text-white',
                 outline: 'text-foreground border-border',
