@@ -89,7 +89,6 @@ const { form, submit } = useLoginForm();
                 </Link>
             </div>
 
-            {{ form.processing }}
             <Button
                 :disabled="form.processing"
                 :loading="form.processing"
